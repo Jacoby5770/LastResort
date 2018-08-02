@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "LastResort",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Calculates grade on remaining assignments to attain a particular grade",
   "engines": {
     "node": ">= 7.0.0"
   },
