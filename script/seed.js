@@ -1,7 +1,8 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Course} = require('../server/db/models')
+const courseData = require('./CourseData')
 
 async function seed() {
   await db.sync({force: true})
@@ -27,7 +28,13 @@ async function seed() {
       password: '456'
     }),  ])
 
+    const courses = await Promise.all(
+      courseData.map(course => Course.create(course))
+    )
+  
+
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${courses.length} course`)
   console.log(`seeded successfully`)
 }
 
