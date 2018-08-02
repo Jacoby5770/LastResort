@@ -2,6 +2,13 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Course = db.define('course', {
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
     goalGPA: {
         type: Sequelize.DECIMAL,
         allowNull: false,
@@ -17,23 +24,6 @@ const Course = db.define('course', {
         validate: {
             max: 4.0,
             min: 0.0,
-            notEmpty: true
-        }
-    },
-    finalexamNum: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0.0,
-            notEmpty: true
-        }
-    },
-    finalexamPercentage: {
-        type: Sequelize.DECIMAL,
-        allowNull: false,
-        validate: {
-            min: 0.0,
-            max: 1.0,
             notEmpty: true
         }
     }

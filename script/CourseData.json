@@ -1,14 +1,12 @@
 [
     {
+      "name": "Data Structure",
       "goalGPA": 3.8,
-      "currentGPA": 3.5,
-      "finalexamNum": 1,
-      "finalexamPercentage": 0.40
+      "currentGPA": 3.5
     },
     {
+        "name": "Programming Languages",
         "goalGPA": 4.0,
-        "currentGPA": 2.8,
-        "finalexamNum": 5,
-        "finalexamPercentage": 0.30
+        "currentGPA": 2.8
     }
   ]
