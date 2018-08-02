@@ -1,0 +1,27 @@
+[
+    {
+      "categoryId": 1,
+      "assignmentId": 1
+
+    },
+    {
+      "categoryId": 1,
+      "assignmentId": 2
+
+    },
+    {
+      "categoryId": 2,
+      "assignmentId": 2
+
+    },
+    {
+      "categoryId": 2,
+      "assignmentId": 3
+
+    },
+    {
+      "categoryId": 2,
+      "assignmentId": 4
+
+    }
+  ]

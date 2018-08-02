@@ -1,0 +1,26 @@
+[
+    {
+      "category": "Assignment",
+      "grade": 90
+    },
+    {
+        "category": "Quiz",
+        "grade": 60
+
+    },
+    {
+        "category": "Final Exam",
+        "grade": 80
+
+    },
+    {
+        "category": "Assignment",
+        "grade": 50
+
+    },
+    {
+        "category": "Exam",
+        "grade": 100
+
+    }
+  ]

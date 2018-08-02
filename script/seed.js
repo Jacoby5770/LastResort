@@ -1,9 +1,11 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Course, Category} = require('../server/db/models')
+const {User, Course, Category, CategoryLineItem, Assignment} = require('../server/db/models')
 const courseData = require('./CourseData')
 const categoryData = require('./CategoryData')
+const categoryLineItemData = require('./CategoryLineItem')
+const assignmentData = require('./AssignmentData')
 
 async function seed() {
   await db.sync({force: true})
@@ -36,11 +38,23 @@ async function seed() {
     const category = await Promise.all(
       categoryData.map(category => Category.create(category))
     )
+
+    const categoryLineItem = await Promise.all(
+      categoryLineItemData.map(categoryLineItem => CategoryLineItem.create(categoryLineItem))
+    )
+
+    const assignment = await Promise.all(
+      assignmentData.map(assignment => Assignment.create(assignment))
+    )
   
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${courses.length} course`)
   console.log(`seeded ${category.length} category`)
+  console.log(`seeded ${categoryLineItem.length} categoryLineItem`)
+
+  console.log(`seeded ${assignment.length} assignment`)
+
   console.log(`seeded successfully`)
 }
 
