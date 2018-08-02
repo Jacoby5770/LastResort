@@ -10,11 +10,11 @@ const Category = db.define('category', {
         }
     },
     gradeWeight: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
-            max: 1.0,
-            min: 0.0,
+            max: 100,
+            min: 0,
             notEmpty: true
         }
     },
