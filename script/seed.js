@@ -4,7 +4,7 @@ const db = require('../server/db')
 const {User, Course, Category, CategoryLineItem, Assignment} = require('../server/db/models')
 const courseData = require('./CourseData')
 const categoryData = require('./CategoryData')
-const categoryLineItemData = require('./CategoryLineItem')
+const categoryLineItemData = require('./CategoryLineItemData')
 const assignmentData = require('./AssignmentData')
 
 async function seed() {
@@ -35,25 +35,23 @@ async function seed() {
       courseData.map(course => Course.create(course))
     )
 
-    const category = await Promise.all(
+    const categories = await Promise.all(
       categoryData.map(category => Category.create(category))
     )
 
-    const categoryLineItem = await Promise.all(
-      categoryLineItemData.map(categoryLineItem => CategoryLineItem.create(categoryLineItem))
-    )
-
-    const assignment = await Promise.all(
+    const assignments = await Promise.all(
       assignmentData.map(assignment => Assignment.create(assignment))
     )
   
+    const categoryLineItems = await Promise.all(
+      categoryLineItemData.map(categoryLineItem => CategoryLineItem.create(categoryLineItem))
+    )
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${courses.length} course`)
-  console.log(`seeded ${category.length} category`)
-  console.log(`seeded ${categoryLineItem.length} categoryLineItem`)
-
-  console.log(`seeded ${assignment.length} assignment`)
+  console.log(`seeded ${categories.length} category`)
+  console.log(`seeded ${categoryLineItems.length} categoryLineItem`)
+  console.log(`seeded ${assignments.length} assignment`)
 
   console.log(`seeded successfully`)
 }

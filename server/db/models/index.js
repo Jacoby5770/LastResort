@@ -2,7 +2,7 @@ const User = require('./user')
 const Course = require('./course')
 const Category = require('./category')
 const Assignment= require('./assignment')
-const CategoryLineItem= require('./categoryLineItem')
+const CategoryLineItem= require('./categorylineitem')
 
 /**
  * If we had any associations to make, this would be a great place to put them!

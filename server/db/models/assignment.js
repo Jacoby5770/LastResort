@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Assignments = db.define('assignments', {
+const Assignment = db.define('assignment', {
     category: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -20,4 +20,4 @@ const Assignments = db.define('assignments', {
     }
 })
 
-module.exports = Assignments
+module.exports = Assignment

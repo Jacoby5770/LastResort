@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const CategoryLineItem = db.define('categoryLineItem', {
+const CategoryLineItem = db.define('categorylineitem', {
     id: {
+        autoIncrement: true,
+        primaryKey: true,
         type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
