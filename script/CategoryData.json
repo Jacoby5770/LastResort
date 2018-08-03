@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Final Exam",
+    "gradeWeight": 0.4,
+    "totalQuantity": 1
+  },
+  {
+    "category": "Assignment",
+    "gradeWeight": 0.2,
+    "totalQuantity": 10
+  },
+  {
+    "category": "Exam",
+    "gradeWeight": 0.3,
+    "totalQuantity": 3
+  },
+  {
+    "category": "Quiz",
+    "gradeWeight": 0.1,
+    "totalQuantity": 5
+  }
+]
