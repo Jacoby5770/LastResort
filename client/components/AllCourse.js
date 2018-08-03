@@ -8,6 +8,11 @@ class AllCourse extends React.Component {
         console.log('props in allcourse', this.props)
         return (
             <div className="row">
+            <Link
+              to="/course/add"
+            >
+              Add Course
+            </Link>
                 {this.props.course.map(individualCourse => (
                     <SingleCourse key = {individualCourse.id} course = {individualCourse} />
                 ))}
