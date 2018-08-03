@@ -1,23 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button, Header, Modal } from 'semantic-ui-react'
+import { SingleCourse } from '../components';
 
 class AllCourse extends React.Component {
     render() {
-        console.log('props in allcampis', this.props)
+        console.log('props in allcourse', this.props)
         return (
             <div className="row">
-                {this.props.course.map(course => (
-                    <Modal key = {course.id} trigger={<Button>Show {course.name}</Button>}>
-                    <Modal.Header>Select Categories</Modal.Header>      
-                      <Modal.Description>
-                        <Header>{course.name}</Header>
-                        <div>Here is your current GPA: {course.currentGPA}</div>
-                        <div>Here is your goal GPA: {course.goalGPA}</div>
-                        <br/>
-                      </Modal.Description>
-                  </Modal>
+                {this.props.course.map(individualCourse => (
+                    <SingleCourse key = {individualCourse.id} course = {individualCourse} />
                 ))}
             </div>
         )
