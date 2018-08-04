@@ -5,4 +5,9 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
+export {default as AllCourse} from './AllCourse'
+export {default as SingleCourse} from './SingleCourse'
+export {default as CourseForm} from './CourseForm'
+export {default as AddCourse} from './AddCourse'
 export {Login, Signup} from './auth-form'
+
