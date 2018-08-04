@@ -63,8 +63,6 @@ export default function (state = [], action) {
             return action.courses
         case ADD_COURSES:
             return [...state, action.addCourse]
-        // case UPDATE_COURSES:
-        //     return [...state.filter]
         default:
             return state
     }

@@ -15,9 +15,11 @@ const SingleCourse = props => {
         <div className="container">
             <br />
             <Modal key={course.id} trigger={<Button>Show {course.name}</Button>}>
-                <Modal.Header>Select Categories</Modal.Header>
+                <Modal.Header>
+                    {course.name}
+                </Modal.Header>
+                <br />
                 <Modal.Description>
-                    <Header>{course.name}</Header>
                     <div>Here is your current GPA: {course.currentGPA}</div>
                     <div>Here is your goal GPA: {course.goalGPA}</div>
                     <br />
