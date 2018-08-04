@@ -8,7 +8,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <nav>
         <div>
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
         </div>
     </nav>
     <hr />

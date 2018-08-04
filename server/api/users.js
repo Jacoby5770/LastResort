@@ -2,7 +2,9 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router
+.route('/')
+.get(async (req, res, next) => {
   try {
     console.log('getting the users', req.body)
     const users = await User.findAll({

@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import course from './course'
+import {reducer as formReducer} from 'redux-form'
 
 const reducer = combineReducers({
   user,
-  course
+  course,
+  form: formReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
