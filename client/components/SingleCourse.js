@@ -23,6 +23,7 @@ const SingleCourse = props => {
                     <div>Here is your current GPA: {course.currentGPA}</div>
                     <div>Here is your goal GPA: {course.goalGPA}</div>
                     <br />
+                //assignments 
                 </Modal.Description>
             </Modal>
             <div className="col s12">
@@ -39,13 +40,12 @@ const SingleCourse = props => {
     )
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//     const productId = Number(ownProps.match.params.productId)
-//     return {
-//         product: state.products.byId[productId] || state.products.byId[0],
-//         review: getProductsReviews(state.reviews, productId),
-//         isAdmin: !!state.user.admin
-//     }
-// }
+const mapStateToProps = (state, ownProps) => {
+    // const productId = Number(ownProps.match.params.productId)
+    return {
+        // assignment: getProductsReviews(state.reviews, productId)
+        // isAdmin: !!state.user.admin
+    }
+}
 
-export default connect(null)(SingleCourse)
+export default connect(mapStateToProps)(SingleCourse)
