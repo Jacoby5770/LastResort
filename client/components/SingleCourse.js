@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 // } from '../components'
 // import { getProductsReviews } from '../store'
 import { Button, Header, Modal } from 'semantic-ui-react'
+import {AllCategory} from '../components'
 
 const SingleCourse = props => {
     console.log('props in single course', props)
@@ -23,6 +24,7 @@ const SingleCourse = props => {
                     <div>Here is your current GPA: {course.currentGPA}</div>
                     <div>Here is your goal GPA: {course.goalGPA}</div>
                     <br />
+                    <AllCategory category = {props.category} />
                 </Modal.Description>
             </Modal>
             <div className="col s12">
@@ -39,13 +41,12 @@ const SingleCourse = props => {
     )
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//     const productId = Number(ownProps.match.params.productId)
-//     return {
-//         product: state.products.byId[productId] || state.products.byId[0],
-//         review: getProductsReviews(state.reviews, productId),
-//         isAdmin: !!state.user.admin
-//     }
-// }
+const mapStateToProps = (state, ownProps) => {
+    return {
 
-export default connect(null)(SingleCourse)
+        category: state.category
+        // isAdmin: !!state.user.admin
+    }
+}
+
+export default connect(mapStateToProps)(SingleCourse)
