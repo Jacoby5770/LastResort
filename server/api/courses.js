@@ -1,7 +1,17 @@
 const router = require('express').Router()
 const {Course} = require('../db/models')
 module.exports = router
- router.get('/', async (req, res, next) => {
+
+const createCourseFromJSON = body => ({
+  name: '' + body.name,
+  goalGPA: +body.goalGPA,
+  currentGPA: +body.currentGPA,
+  
+})
+
+ router
+ .route('/')
+ .get(async (req, res, next) => {
   try {
     console.log('getting the courses', req.body)
     const course = await Course.findAll({
@@ -11,3 +21,14 @@ module.exports = router
     next(err)
   }
 })
+.post(async (req, res, next) => {
+  try {
+    const course = await Course.create(createCourseFromJSON(req.body))
+    res.json(course)
+  } catch (err) {
+    err.status = 400
+    err.message = {error: err.message}
+    next(err)
+  }
+})
+

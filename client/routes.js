@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {UserHome, AllCourse, AddCourse} from './components'
+import {UserHome, AllCourse, AddCourse, EditCourse} from './components'
 import {me, getCourses} from './store'
 
 /**
@@ -27,6 +27,7 @@ class Routes extends Component {
             <Route exact path="/" component={AllCourse} />
             <Route path="/home" component={UserHome} />
             <Route path="/course/add" component={AddCourse} />
+            <Route path="/course/:courseId/edit" component={EditCourse} />
 
           </Switch>
       //   )}
