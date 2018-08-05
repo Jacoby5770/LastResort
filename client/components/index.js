@@ -9,5 +9,6 @@ export {default as AllCourse} from './AllCourse'
 export {default as SingleCourse} from './SingleCourse'
 export {default as CourseForm} from './CourseForm'
 export {default as AddCourse} from './AddCourse'
+export {default as AllCategory} from './AllCategory'
 export {Login, Signup} from './auth-form'
 
