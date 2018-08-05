@@ -1,11 +1,11 @@
 import React from 'react'
 import {CourseForm} from '../components'
-import {postCategory} from '../store'
+import {postCourse} from '../store'
 import {connect} from 'react-redux'
 
-class AddCategory extends React.Component {
-  submit = addedCategory => {
-    this.props.postCategory(addedCategory)
+class AddCourse extends React.Component {
+  submit = addedCourse => {
+    this.props.postCourse(addedCourse)
   }
 
   render() {
@@ -15,8 +15,8 @@ class AddCategory extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postCategory: newCategory => dispatch(postCategory(newCategory))
+    postCourse: newCourse => dispatch(postCourse(newCourse))
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddCategory)
+export default connect(null, mapDispatchToProps)(AddCourse)

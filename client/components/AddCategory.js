@@ -1,22 +1,22 @@
 import React from 'react'
-import {CategoryForm} from '../components'
-import {postCourse} from '../store'
+import {CourseForm} from '../components'
+import {postCategory} from '../store'
 import {connect} from 'react-redux'
 
-class AddCourse extends React.Component {
-  submit = addedCourse => {
-    this.props.postCourse(addedCourse)
+class AddCategory extends React.Component {
+  submit = addedCategory => {
+    this.props.postCategory(addedCategory)
   }
 
   render() {
-    return <CategoryForm {...this.props} onSubmit={this.submit} />
+    return <CourseForm {...this.props} onSubmit={this.submit} />
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    postCourse: newCourse => dispatch(postCourse(newCourse))
+    postCategory: newCategory => dispatch(postCategory(newCategory))
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddCourse)
+export default connect(null, mapDispatchToProps)(AddCategory)
