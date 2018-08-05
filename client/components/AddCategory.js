@@ -1,5 +1,5 @@
 import React from 'react'
-import {CourseForm} from '../components'
+import {CategoryForm} from '../components'
 import {postCategory} from '../store'
 import {connect} from 'react-redux'
 
@@ -9,7 +9,7 @@ class AddCategory extends React.Component {
   }
 
   render() {
-    return <CourseForm {...this.props} onSubmit={this.submit} />
+    return <CategoryForm {...this.props} onSubmit={this.submit} />
   }
 }
 
