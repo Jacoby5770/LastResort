@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {UserHome, AllCourse, AddCourse, EditCourse} from './components'
-import {me, getCourses} from './store'
+import {me, getCourses, getCategories} from './store'
 
 /**
  * COMPONENT
@@ -55,6 +55,7 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
       dispatch(getCourses())
+      dispatch(getCategories())
     }
   }
 }

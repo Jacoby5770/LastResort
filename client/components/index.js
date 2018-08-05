@@ -10,5 +10,6 @@ export {default as SingleCourse} from './SingleCourse'
 export {default as CourseForm} from './CourseForm'
 export {default as AddCourse} from './AddCourse'
 export {default as AllAssignment} from './AllAsignment'
+export {default as AllCategory} from './AllCategory'
 export {Login, Signup} from './auth-form'
 
