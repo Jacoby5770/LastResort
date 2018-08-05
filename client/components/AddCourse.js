@@ -1,12 +1,11 @@
 import React from 'react'
 import {CourseForm} from '../components'
-import {postCourse} from '../store'
+import {postCategory} from '../store'
 import {connect} from 'react-redux'
 
-class AddCourse extends React.Component {
-  submit = addedCourse => {
-    this.props.postCourse(addedCourse)
-    //this will redirect to the thunk id
+class AddCategory extends React.Component {
+  submit = addedCategory => {
+    this.props.postCategory(addedCategory)
   }
 
   render() {
@@ -16,8 +15,8 @@ class AddCourse extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postCourse: newCourse => dispatch(postCourse(newCourse))
+    postCategory: newCategory => dispatch(postCategory(newCategory))
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddCourse)
+export default connect(null, mapDispatchToProps)(AddCategory)
