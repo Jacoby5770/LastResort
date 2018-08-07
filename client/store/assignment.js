@@ -45,7 +45,10 @@ const updateAssignment = updatedAssignment => ({
 export const getAssignments= () => dispatch => {
   axios
     .get(`/api/assignments`)
-    .then(({data}) => dispatch(gotAssignments(data)))
+    .then(({data}) => {
+      dispatch(gotAssignments(data))
+      console.log('assignment data', data)
+    })
     .catch(error => console.error(error))
 }
 
@@ -105,20 +108,18 @@ export default function(state = defaultAssignments, action) {
 //   }, [])
 // }
 
-// export const getAssignmentByAssignment = (assignmentState, assId) => {
-//   return assignmentState.allIds.reduce(
-//     (result, prodCat) => {
-//       if (prodCat.categoryId === catId) {
-//         result.push(state.products.byId[prodCat.productId])
-//       }
-//       return result
-//     },
-//     []
-//   )
-// }
-
-// export const inventoryByProductId = (state, productId) =>
-//   state.products.byId[productId].inventory
+export const getAssignmentByAssignment = (assignmentState, category) => {
+  return assignmentState.allIds.reduce(
+    (result, assignmentAllId) => {
+      console.log('category of each id', category)
+      if (assignmentState.byId[assignmentAllId].category === category) {
+        result.push(assignmentState.byId[assignmentAllId])
+      }
+      return result
+    },
+    []
+  )
+}
 
 // export const getProductsBySearch = (productsState, productName) => {
 //   return productsState.allIds.reduce((result, id) => {

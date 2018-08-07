@@ -6,6 +6,21 @@ import history from '../history'
 const GET_CATEGORY = 'GET_CATEGORY'
 const ADD_CATEGORY = 'ADD_CATEGORY'
 
+/**
+ * INITIAL STATE
+ */
+const defaultCategories = {
+    byId: {
+      0: {
+        id: 0,
+        category: 'Loading...',
+        grade: 0,
+        course: 'Loading...'
+      }
+    },
+    allIds: []
+  }
+
 // ACTION CREATORS
 
 const gotCategories = categories => ({
@@ -43,15 +58,35 @@ export const postCategory = newCategory => dispatch => {
 }
 
 // REDUCER
-
-export default function (state = [], action) {
+export default function(state = defaultCategories, action) {
     switch (action.type) {
-        case GET_CATEGORY:
-            return action.categories
-        case ADD_CATEGORY:
-            return [...state, action.addCategory]
-        default:
-            return state
+      case GET_CATEGORY:
+        return {
+          byId: action.categories.reduce((result, category) => {
+            result[category.id] = category
+            return result
+          }, {}),
+          allIds: action.categories.map(category => category.id)
+        }
+      case ADD_CATEGORY:
+        return {
+          byId: {...state.byId, [action.addCategories.id]: action.addedAaddCategoriesssignment},
+          allIds: [...state.allIds, action.addCategories.id]
+        }
+      default:
+        return state
     }
-}
+  }
 
+  export const getCategoriesByCourse = (categoryState, courseId) => {
+    return categoryState.allIds.reduce(
+      (result, categoryAllId) => {
+        if (categoryState.byId[categoryAllId].courseId === courseId) {
+          result.push(categoryState.byId[categoryAllId])
+        }
+        return result
+      },
+      []
+    )
+  }
+  
