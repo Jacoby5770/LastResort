@@ -21,6 +21,9 @@ const CategoryLineItem= require('./categorylineitem')
 Assignment.belongsToMany(Category, {through: CategoryLineItem})
 Category.belongsToMany(Assignment, {through: CategoryLineItem})
 
+Course.hasMany(Category)
+Category.belongsTo(Course)
+
 User.hasMany(Course)
 Course.belongsTo(User)
 

@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {UserHome, AllCourse, AddCourse, AddCategory} from './components'
-import {me, getCourses, getCategories} from './store'
+import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory } from './components'
+import { me, getCourses, getCategories, getAssignments } from './store'
 
 /**
  * COMPONENT
@@ -14,7 +14,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const { isLoggedIn } = this.props
 
     return (
       // <Switch>
@@ -22,15 +22,26 @@ class Routes extends Component {
       //   <Route path="/login" component={Login} />
       //   <Route path="/signup" component={Signup} />
       //   {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route exact path="/" component={AllCourse} />
-            <Route path="/home" component={UserHome} />
-            <Route path="/course/add" component={AddCourse} />
-            <Route path="/category/add" component={AddCategory} />
-            {/* <Route path="/course/:courseId/edit" component={EditCourse} /> */}
+      <Switch>
+        {/* Routes placed here are only available after logging in */}
+        <Route exact path="/" component={AllCourse} />
+        <Route path="/home" component={UserHome} />
+        <Route path="/course/add" component={AddCourse} />
+        <Route path="/category/add" component={AddCategory} />
+        <Route path="/course/:courseId/edit" component={EditCourse} />
+        {/* <Route exact path = "/category/:categoryName" component = {AssignmentByCategory}/> */}
+        <Route
+          exact
+          path="/category/:courseId([0-9]*/categoryName)"
+          component={SingleCategory}
+        />
+        <Route
+          exact
+          path="/course/:courseId([0-9]*)"
+          component={SingleCourse}
+        />
+      </Switch>
 
-          </Switch>
       //   )}
       //   {/* Displays our Login component as a fallback */}
       //   <Route component={Login} />
@@ -57,6 +68,7 @@ const mapDispatch = dispatch => {
       dispatch(me())
       dispatch(getCourses())
       dispatch(getCategories())
+      dispatch(getAssignments())
     }
   }
 }

@@ -4,12 +4,14 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import course from './course'
+import assignment from './assignment'
 import category from './category'
 import {reducer as formReducer} from 'redux-form'
 
 const reducer = combineReducers({
   user,
   course,
+  assignment,
   category,
   form: formReducer
 })
@@ -22,4 +24,5 @@ export default store
 export * from './user'
 export * from './course'
 export * from './category'
+export * from './assignment'
 
