@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory } from './components'
+import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory } from './components'
 import { me, getCourses, getCategories, getAssignments } from './store'
 
 /**
@@ -27,6 +27,7 @@ class Routes extends Component {
         <Route exact path="/" component={AllCourse} />
         <Route path="/home" component={UserHome} />
         <Route path="/course/add" component={AddCourse} />
+        <Route path="/category/add" component={AddCategory} />
         <Route path="/course/:courseId/edit" component={EditCourse} />
         {/* <Route exact path = "/category/:categoryName" component = {AssignmentByCategory}/> */}
         <Route
@@ -40,6 +41,7 @@ class Routes extends Component {
           component={SingleCourse}
         />
       </Switch>
+
       //   )}
       //   {/* Displays our Login component as a fallback */}
       //   <Route component={Login} />
