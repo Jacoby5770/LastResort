@@ -10,7 +10,7 @@ class AllCategory extends React.Component {
         return (
             <div>
                 {this.props.category.map(individualCat => (
-                    <Modal key={individualCat.id} trigger={<Button>Show {individualCat.category}</Button>}>
+                    <Modal key={individualCat.id} trigger={<Button>Show All {individualCat.category}</Button>}>
                     <Modal.Header>
                         {individualCat.category}
                     </Modal.Header>

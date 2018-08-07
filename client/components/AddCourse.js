@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 class AddCourse extends React.Component {
   submit = addedCourse => {
     this.props.postCourse(addedCourse)
-    //this will redirect to the thunk id
   }
 
   render() {
