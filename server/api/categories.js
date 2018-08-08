@@ -5,7 +5,8 @@ module.exports = router
 const createCategoryFromJSON = body => ({
     category: '' + body.category,
     gradeWeight: +body.gradeWeight,
-    totalQuantity: +body.totalQuantity
+    totalQuantity: +body.totalQuantity,
+    courseId: +body.courseId
   })
 
 router
