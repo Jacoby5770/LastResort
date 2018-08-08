@@ -27,12 +27,12 @@ class Routes extends Component {
         <Route exact path="/" component={AllCourse} />
         <Route path="/home" component={UserHome} />
         <Route path="/course/add" component={AddCourse} />
-        <Route path="/category/add" component={AddCategory} />
+        <Route path="/category/:courseId/add" component={AddCategory} />
         <Route path="/course/:courseId/edit" component={EditCourse} />
         {/* <Route exact path = "/category/:categoryName" component = {AssignmentByCategory}/> */}
         <Route
           exact
-          path="/category/:courseId([0-9]*/categoryName)"
+          path="/category/:courseId([0-9]*/:categoryId([0-9]*)"
           component={SingleCategory}
         />
         <Route

@@ -8,12 +8,12 @@ class AllCategory extends React.Component {
         return (
             <div>
                 <Link
-                    to="/category/add"
+                    to={`/category/${this.props.course.id}/add`}
                 >
                     Add Category
             </Link>
                 {this.props.category.map(individualCat => (
-                    <Link key={individualCat.id} to={`/category/${this.props.course.id}/${individualCat.category}`}>
+                    <Link key={individualCat.id} to={`/category/${this.props.course.id}/${individualCat.id}`}>
                         <div className="card-content">
                             {individualCat.category}
                         </div>

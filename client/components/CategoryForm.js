@@ -51,7 +51,7 @@ const mapDispatchToProps = dispatch => ({})
 const mapStateToProps = (state, { match }) => ({
     // This `initialValues` variable name below is required by redux-forms
     //only for edit, if there is a id in the url
-    initialValues: state.category
+    initialValues: state.category.byId[match.params.categoryId]
 })
 
 CategoryForm = reduxForm({ form: 'categoryForm' })(CategoryForm)
