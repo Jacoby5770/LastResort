@@ -38,7 +38,7 @@ export const getCategories = () => dispatch => {
     axios
         .get(`/api/categories`)
         .then(({ data }) => {
-            console.log('data in category', data)
+     
             dispatch(gotCategories(data))
         }
         )
@@ -49,9 +49,8 @@ export const postCategory = newCategory => dispatch => {
     axios
         .post('/api/categories', newCategory)
         .then(({ data }) => {
-
             dispatch(addCategories(data))
-            // history.push(`/product/${data.productId}#review_${data.id}`)
+            history.push(`/category/${data.courseId}/${data.id}`)
         }
         )
         .catch(error => console.error(error))
@@ -70,8 +69,8 @@ export default function(state = defaultCategories, action) {
         }
       case ADD_CATEGORY:
         return {
-          byId: {...state.byId, [action.addCategories.id]: action.addedAaddCategoriesssignment},
-          allIds: [...state.allIds, action.addCategories.id]
+          byId: {...state.byId, [action.addCategory.id]: action.addCategory},
+          allIds: [...state.allIds, action.addCategory.id]
         }
       default:
         return state
