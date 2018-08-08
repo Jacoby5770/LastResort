@@ -10,7 +10,7 @@ class AllCategory extends React.Component {
                 <Link
                     to="/category/add"
                 >
-                    Add Course
+                    Add Category
             </Link>
                 {this.props.category.map(individualCat => (
                     <Link key={individualCat.id} to={`/category/${this.props.course.id}/${individualCat.category}`}>

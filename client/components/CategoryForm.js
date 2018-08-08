@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
-let CourseForm = props => {
+let CategoryForm = props => {
     const { handleSubmit, pristine, submitting } = props
     return (
         <div>
@@ -23,7 +23,7 @@ let CourseForm = props => {
                 <div>
                     <Field name="totalQuantity" component="input" type="number" />
                     <label htmlFor="totalQuantity">
-                        Number of {props.initialValues.category}
+                        Number of Categories
           </label>
                 </div>
                 <button
@@ -54,7 +54,7 @@ const mapStateToProps = (state, { match }) => ({
     initialValues: state.category
 })
 
-CourseForm = reduxForm({ form: 'courseForm' })(CourseForm)
-CourseForm = connect(mapStateToProps, mapDispatchToProps)(CourseForm)
+CategoryForm = reduxForm({ form: 'categoryForm' })(CategoryForm)
+CategoryForm = connect(mapStateToProps, mapDispatchToProps)(CategoryForm)
 
-export default CourseForm
+export default CategoryForm
