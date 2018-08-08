@@ -24,17 +24,18 @@ class Routes extends Component {
       //   {isLoggedIn && (
       <Switch>
         {/* Routes placed here are only available after logging in */}
+        <Route
+          exact
+          path="/category/:courseId([0-9]*)/:categoryId([0-9]*)"
+          component={SingleCategory}
+        />
         <Route exact path="/" component={AllCourse} />
         <Route path="/home" component={UserHome} />
         <Route path="/course/add" component={AddCourse} />
         <Route path="/category/:courseId/add" component={AddCategory} />
         <Route path="/course/:courseId/edit" component={EditCourse} />
         {/* <Route exact path = "/category/:categoryName" component = {AssignmentByCategory}/> */}
-        <Route
-          exact
-          path="/category/:courseId([0-9]*/:categoryId([0-9]*)"
-          component={SingleCategory}
-        />
+        
         <Route
           exact
           path="/course/:courseId([0-9]*)"

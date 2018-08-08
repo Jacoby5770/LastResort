@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { AllAssignment } from '../components'
+import { AssignmentByCategory } from '../components'
 import { getAssignmentByAssignment } from '../store'
 
 const SingleCategory = props => {
@@ -14,7 +14,7 @@ const SingleCategory = props => {
             }
             <br />
             <div key={category.id}>
-                <AllAssignment assignment={props.assignment} />
+                <AssignmentByCategory assignment={props.assignment} />
             </div>
         </div>
     )
