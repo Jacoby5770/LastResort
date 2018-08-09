@@ -6,6 +6,7 @@ import user from './user'
 import course from './course'
 import assignment from './assignment'
 import category from './category'
+import assignmentCat from './assignmentCat'
 import {reducer as formReducer} from 'redux-form'
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   course,
   assignment,
   category,
+  assignmentCat,
   form: formReducer
 })
 const middleware = composeWithDevTools(
@@ -25,4 +27,5 @@ export * from './user'
 export * from './course'
 export * from './category'
 export * from './assignment'
+export * from './assignmentCat'
 

@@ -108,12 +108,12 @@ export default function(state = defaultAssignments, action) {
 //   }, [])
 // }
 
-export const getAssignmentByAssignment = (assignmentState, category) => {
-  return assignmentState.allIds.reduce(
-    (result, assignmentAllId) => {
-      console.log('category of each id', category)
-      if (assignmentState.byId[assignmentAllId].category === category) {
-        result.push(assignmentState.byId[assignmentAllId])
+export const getAssignmentByAssignment = (state, categoryId) => {
+  return Object.values(state.assignmentCat.byId).reduce(
+    (result, assCat) => {
+      console.log('category of each id', categoryId)
+      if (assCat.categoryId === categoryId) {
+        result.push(state.assignment.byId[assCat.assignmentId])
       }
       return result
     },
