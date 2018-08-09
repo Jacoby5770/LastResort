@@ -21,9 +21,9 @@ const SingleCategory = props => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const categoryName = Number(ownProps.match.params.categoryName)
+    const categoryId = Number(ownProps.match.params.categoryId)
     return {
-        assignment: getAssignmentByAssignment(state.assignment, categoryName),
+        assignment: getAssignmentByAssignment(state, categoryId),
         category: state.category
 
         // isAdmin: !!state.user.admin
