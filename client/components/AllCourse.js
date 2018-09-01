@@ -8,21 +8,36 @@ class AllCourse extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <Link
-                        to="/course/add"
-                    >
-                        Add Course
-                </Link>
+                    <div className="col s12 m6 push-m3 center-align">
+                        <div className="collection center-align">
+                        Here Are Your Enrolled Courses:
+                            <br />
+                            <br />
 
-                    <div className="col s12 l9">
+                            <Link
+                                to="/course/add"
+                                className="teal lighten-2 waves-effect waves-light btn"
 
-                        {this.props.course.map(individualCourse => (
-                            <Link key={individualCourse.id} to={`/course/${individualCourse.id}`}>
-                                <div className="card-content">
-                                    {individualCourse.name}
-                                </div>
+                            >
+                                Add Course
+                                <i className="material-icons">add</i>
+
                             </Link>
-                        ))}
+                            <br />
+                            <br />
+
+                            {this.props.course.map(individualCourse => (
+                                <div key={individualCourse.id} className="collection center-align">
+                                    <div className="flow-text truncate collection-item">
+                                        <Link to={`/course/${individualCourse.id}`}>
+                                            <div className="card-content black-text">
+                                                {individualCourse.name}
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

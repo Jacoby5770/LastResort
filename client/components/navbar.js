@@ -9,6 +9,9 @@ const LoggedInLinks = props => (
     <li>
       <Link to="/">Home</Link>
     </li>
+    <li>
+      <Link to="/home">Account</Link>
+    </li>
   </span>
 )
 

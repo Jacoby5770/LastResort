@@ -65,12 +65,12 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   console.log('dispatch in')
   return {
-    loadInitialData() {
-      dispatch(me())
-      dispatch(getCourses())
-      dispatch(getCategories())
-      dispatch(getAssignments())
-      dispatch(getAssignmentCats())
+    async loadInitialData() {
+      await dispatch(me())
+      await dispatch(getCourses())
+      await dispatch(getCategories())
+      await dispatch(getAssignments())
+      await dispatch(getAssignmentCats())
     }
   }
 }

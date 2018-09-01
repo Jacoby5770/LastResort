@@ -5,32 +5,35 @@ import { connect } from 'react-redux'
 let CategoryForm = props => {
     const { handleSubmit, pristine, submitting } = props
     return (
-        <div>
+        <div className="container">
             <h3>Add/Edit Category</h3>
             <br />
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form className="row" onSubmit={handleSubmit}>
+                <div className="col s12 m6">
                     <Field name="category" component="input" type="text" />
                     <label htmlFor="category">Name of Category</label>
                 </div>
-                <div>
+                <div className="col s12  m6">
                     <Field name="gradeWeight" component="input" type="number" />
                     <label htmlFor="gradeWeight">
                         Grade Weighting
-          </label>
+                    </label>
                     {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
                 </div>
-                <div>
+                <div className="col s12  m6">
                     <Field name="totalQuantity" component="input" type="number" />
                     <label htmlFor="totalQuantity">
                         Number of Categories
           </label>
                 </div>
                 <button
+                    className="btn-floating btn-large waves-effect waves-light teal lighten-2"
                     disabled={pristine || submitting}
                     type="submit"
                 >
-                    Submit
+                    Add
+                    <i className="material-icons">add</i>
+
         </button>
             </form>
             {/* Hackish, needs to be rethought, but neccessary to keep materialize from

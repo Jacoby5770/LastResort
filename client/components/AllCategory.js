@@ -4,21 +4,22 @@ import { Link } from 'react-router-dom'
 
 class AllCategory extends React.Component {
     render() {
-         console.log('in all cateogry checking for props', this.props)
+        console.log('in all cateogry checking for props', this.props)
         return (
             <div>
-                <Link
-                    to={`/category/${this.props.course.id}/add`}
-                >
-                    Add Category
-            </Link>
-                {this.props.category.map(individualCat => (
-                    <Link key={individualCat.id} to={`/category/${this.props.course.id}/${individualCat.id}`}>
-                        <div className="card-content">
-                            {individualCat.category}
-                        </div>
-                    </Link>
-                ))}
+                    <br />
+                        {this.props.category.map(individualCat => (
+                            <div key={individualCat.id} className="collection center-align">
+                                <div className="flow-text truncate collection-item">
+                                    <Link key={individualCat.id} to={`/category/${this.props.course.id}/${individualCat.id}`}>
+                                        <div className="card-content black-text">
+                                            {individualCat.category}
+                                        </div>
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
+                  
             </div>
         )
     }

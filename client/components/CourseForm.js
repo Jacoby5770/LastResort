@@ -9,26 +9,27 @@ let CourseForm = props => {
       <h3>Add/Edit Course</h3>
       <br />
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="col s12 m6">
           <Field name="name" component="input" type="text" />
           <label htmlFor="name">Course Name</label>
         </div>
-        <div>
+        <div className="col s12 m6">
           <Field name="goalGPA" component="input" type="number" />
           <label htmlFor="goalGPA">Goal GPA</label>
           {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
         </div>
-        <div>
+        <div className="col s12 m6">
           <Field name="currentGPA" component="input" type="number" />
           <label htmlFor="currentGPA">
             Current GPA
           </label>
         </div>
         <button
+        className="btn-floating btn-large waves-effect waves-light teal lighten-2"
           disabled={pristine || submitting}
           type="submit"
         >
-          Submit
+          Add
         </button>
       </form>
       {/* Hackish, needs to be rethought, but neccessary to keep materialize from
