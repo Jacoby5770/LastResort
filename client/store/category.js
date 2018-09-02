@@ -61,6 +61,7 @@ export default function(state = defaultCategories, action) {
     switch (action.type) {
       case GET_CATEGORY:
         return {
+          ...state,
           byId: action.categories.reduce((result, category) => {
             result[category.id] = category
             return result
@@ -69,6 +70,7 @@ export default function(state = defaultCategories, action) {
         }
       case ADD_CATEGORY:
         return {
+          ...state,
           byId: {...state.byId, [action.addCategory.id]: action.addCategory},
           allIds: [...state.allIds, action.addCategory.id]
         }
