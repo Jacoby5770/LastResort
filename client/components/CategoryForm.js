@@ -16,7 +16,7 @@ let CategoryForm = props => {
                 <div className="col s12  m6">
                     <Field name="gradeWeight" component="input" type="number" />
                     <label htmlFor="gradeWeight">
-                        Grade Weighting
+                        Grade Weighting (Decimal)
                     </label>
                     {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
                 </div>
