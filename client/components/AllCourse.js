@@ -10,10 +10,7 @@ class AllCourse extends React.Component {
                 <div className="row">
                     <div className="col s12 m6 push-m3 center-align">
                         <div className="collection center-align">
-                        Here Are Your Enrolled Courses:
-                            <br />
-                            <br />
-
+                        <br />
                             <Link
                                 to="/course/add"
                                 className="teal lighten-2 waves-effect waves-light btn"
@@ -25,6 +22,7 @@ class AllCourse extends React.Component {
                             </Link>
                             <br />
                             <br />
+                            Here Are Your Enrolled Courses:
 
                             {this.props.course.map(individualCourse => (
                                 <div key={individualCourse.id} className="collection center-align">

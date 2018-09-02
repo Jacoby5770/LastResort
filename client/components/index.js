@@ -14,5 +14,7 @@ export {default as AllCategory} from './AllCategory'
 export {default as SingleCategory} from './SingleCategory'
 export {default as CategoryForm} from './CategoryForm'
 export {default as AddCategory} from './AddCategory'
+export {default as AssignmentForm} from './AssignmentForm'
+export {default as AddAssignment} from './AddAssignment'
 export {Login, Signup} from './auth-form'
 

@@ -6,15 +6,24 @@ import { getAssignmentByAssignment } from '../store'
 
 const SingleCategory = props => {
     console.log('props in single category fegr', props)
-    const { category } = props
-
     return (
         <div className="container">
-            {console.log('props in single category fegr', props)
-            }
-            <br />
-            <div key={category.id}>
-                <AssignmentByCategory assignment={props.assignment} />
+            <div className="row">
+                <div className="col s12 m6 push-m3 center-align">
+                    <br />
+                    <div className="collection center-align">
+                        <br />
+                        <Link
+                            to={`/assignment/${props.match.params.categoryId}/add`}
+                            className="teal lighten-2 waves-effect waves-light btn"
+                        >
+                            Add Assignment
+                        <i className="material-icons">add</i>
+
+                        </Link>
+                        <AssignmentByCategory assignment={props.assignment} />
+                    </div>
+                </div>
             </div>
         </div>
     )

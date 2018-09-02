@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import { addAssignmentCat } from '../store'
 
 // ACTION TYPES
 
@@ -52,12 +53,12 @@ export const getAssignments= () => dispatch => {
     .catch(error => console.error(error))
 }
 
-export const postAssignment = newAssignment => dispatch => {
+export const postAssignment = (newAssignment, categoryId) => dispatch => {
   axios
-    .post('/api/assignments', newAssignment)
+    .post('/api/assignments', {newAssignment, categoryId})
     .then(({data}) => {
-      dispatch(addAssignment(data))
-    //   history.push(`/product/${data.id}`)
+      dispatch(addAssignment(data.assignments))
+      dispatch(addAssignmentCat(data.assignmentCatItem))
     })
     .catch(error => console.error(error))
 }
@@ -75,6 +76,7 @@ export default function(state = defaultAssignments, action) {
   switch (action.type) {
     case GET_ASSIGNMENTS:
       return {
+        ...state,
         byId: action.assignments.reduce((result, assignment) => {
           result[assignment.id] = assignment
           return result
@@ -83,11 +85,13 @@ export default function(state = defaultAssignments, action) {
       }
     case ADD_ASSIGNMENT:
       return {
+        ...state, 
         byId: {...state.byId, [action.addedAssignment.id]: action.addedAssignment},
         allIds: [...state.allIds, action.addedAssignment.id]
       }
     case UPDATE_ASSIGNMENT:
       return {
+        ...state,
         byId: {
           ...state.byId,
           [action.updatedAssignment.id]: action.updatedAssignment
