@@ -17,7 +17,7 @@ const SingleCategory = props => {
                             to={`/assignment/${props.match.params.categoryId}/add`}
                             className="teal lighten-2 waves-effect waves-light btn"
                         >
-                            Add Assignment
+                            Add Grade
                         <i className="material-icons">add</i>
 
                         </Link>
