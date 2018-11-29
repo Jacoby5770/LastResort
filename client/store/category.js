@@ -50,7 +50,7 @@ export const postCategory = newCategory => dispatch => {
         .post('/api/categories', newCategory)
         .then(({ data }) => {
             dispatch(addCategories(data))
-            history.push(`/category/${data.courseId}/${data.id}`)
+            history.push(`/course/${data.courseId}`)
         }
         )
         .catch(error => console.error(error))
@@ -90,4 +90,5 @@ export default function(state = defaultCategories, action) {
       []
     )
   }
+
   

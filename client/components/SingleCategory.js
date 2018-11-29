@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AssignmentByCategory } from '../components'
-import { getAssignmentByAssignment } from '../store'
+import { getAssignmentByAssignment, getAvgAssignment } from '../store'
 
 const SingleCategory = props => {
     console.log('props in single category fegr', props)
@@ -12,6 +12,9 @@ const SingleCategory = props => {
                 <div className="col s12 m6 push-m3 center-align">
                     <br />
                     <div className="collection center-align">
+                    <br />
+                    <br />
+                    <div>Here is your current average: {props.avgAssignment/props.assignment.length}</div>
                         <br />
                         <Link
                             to={`/assignment/${props.match.params.categoryId}/add`}
@@ -19,6 +22,7 @@ const SingleCategory = props => {
                         >
                             Add Grade
                         <i className="material-icons">add</i>
+                        <br />
 
                         </Link>
                         <AssignmentByCategory assignment={props.assignment} />
@@ -31,9 +35,11 @@ const SingleCategory = props => {
 
 const mapStateToProps = (state, ownProps) => {
     const categoryId = Number(ownProps.match.params.categoryId)
+    console.log("state", state)
     return {
         assignment: getAssignmentByAssignment(state, categoryId),
-        category: state.category
+        category: state.category,
+        avgAssignment: getAvgAssignment(state, categoryId) || []
 
         // isAdmin: !!state.user.admin
     }

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AllCategory } from '../components'
-import { getCategories, getCategoriesByCourse } from '../store'
+import { getCategoriesByCourse } from '../store'
 
 
 const SingleCourse = props => {
@@ -18,7 +18,6 @@ const SingleCourse = props => {
                         <br />
                         {course.name}
                         <br />
-                        <div>Here is your current GPA: {course.currentGPA}</div>
                         <div>Here is your goal GPA: {course.goalGPA}</div>
                         <br />
                         

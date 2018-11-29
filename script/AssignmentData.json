@@ -1,21 +1,24 @@
 [
-    {
+    { "category": "Final Exam",
+      "gradeWeight": 0.4,
       "grade": 90
     },
     {
+        "category": "Assignment",
+        "gradeWeight": 0.2,
         "grade": 60
 
     },
     {
+        "category": "Exam",
+        "gradeWeight": 0.3,
         "grade": 80
 
     },
     {
+        "category": "Quiz",
+        "gradeWeight": 0.1,
         "grade": 50
-
-    },
-    {
-        "grade": 100
 
     }
   ]

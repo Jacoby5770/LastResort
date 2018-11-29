@@ -17,14 +17,6 @@ const Category = db.define('category', {
             min: 0,
             notEmpty: true
         }
-    },
-    totalQuantity: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0.0,
-            notEmpty: true
-        }
     }
 })
 

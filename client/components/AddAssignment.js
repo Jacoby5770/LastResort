@@ -9,8 +9,9 @@ class AddAssignment extends React.Component {
 
     const currentCategoryId = Number(this.props.match.params.categoryId)
     await this.props.postAssignment(addedAssignment, currentCategoryId)
-    console.log('props in add assignment', this.props)
+    addedAssignment.categoryId = currentCategoryId
     history.push(`/category/${currentCategoryId}`)
+
   }
 
   render() {

@@ -10,6 +10,8 @@ const AssignmentByCategory = props => (
         <div className="card blue-grey">
           <div className="card-content white-text">
             <p className="flow-text" id={`assignment_${assignment.id}`}>
+            {assignment.category}
+            <br />
             {assignment.grade}
             </p>
           </div>

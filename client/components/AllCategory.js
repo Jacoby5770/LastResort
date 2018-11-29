@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 class AllCategory extends React.Component {
     render() {
-        console.log('in all cateogry checking for props', this.props)
+        console.log('in all category checking for props', this.props)
         return (
             <div>
                     <br />

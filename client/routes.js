@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory, AddAssignment } from './components'
+import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory, AddAssignment, AddBrightspace } from './components'
 import { me, getCourses, getCategories, getAssignments, getAssignmentCats } from './store'
 
 /**
@@ -29,11 +29,12 @@ class Routes extends Component {
           path="/category/:categoryId([0-9]*)"
           component={SingleCategory}
         />
-        <Route exact path="/" component={AllCourse} />
-        <Route path="/home" component={UserHome} />
+        <Route exact path="/home" component={AllCourse} />
+        {/* <Route path="/home" component={UserHome} /> */}
         <Route path="/course/add" component={AddCourse} />
-        <Route path="/category/:courseId/add" component={AddCategory} />
         <Route path="/assignment/:categoryId/add" component={AddAssignment} />
+        <Route path="/" component={AddBrightspace} />
+        <Route path="/category/:courseId/add" component={AddCategory} />
         <Route path="/course/:courseId/edit" component={EditCourse} />
         {/* <Route exact path = "/category/:categoryName" component = {AssignmentByCategory}/> */}
         

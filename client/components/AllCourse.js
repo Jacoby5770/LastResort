@@ -12,6 +12,17 @@ class AllCourse extends React.Component {
                         <div className="collection center-align">
                         <br />
                             <Link
+                                to="/brightspace/add"
+                                className="orange lighten-2 waves-effect waves-light btn"
+
+                            >
+                                Get Grade Data
+                                <i className="material-icons">add</i>
+
+                            </Link>
+                            <br />
+                        <br />
+                            <Link
                                 to="/course/add"
                                 className="teal lighten-2 waves-effect waves-light btn"
 
@@ -27,7 +38,7 @@ class AllCourse extends React.Component {
                             {this.props.course.map(individualCourse => (
                                 <div key={individualCourse.id} className="collection center-align">
                                     <div className="flow-text truncate collection-item">
-                                        <Link to={`/course/${individualCourse.id}`}>
+                                        <Link to={`/category/${individualCourse.id}`}>
                                             <div className="card-content black-text">
                                                 {individualCourse.name}
                                             </div>

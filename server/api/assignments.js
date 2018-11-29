@@ -2,11 +2,11 @@ const router = require('express').Router()
 const { Assignment, Category, CategoryLineItem } = require('../db/models')
 module.exports = router
 
-const createAssignmentFromJSON = body => ({
-  category: '' + body.category,
-  grade: +body.grade,
+// const createAssignmentFromJSON = body => ({
+//   category: '' + body.category,
+//   grade: +body.grade,
 
-})
+// })
 
 router
   .route('/')
@@ -33,7 +33,7 @@ router
           categoryId: category.id
         }
       })
-      res.json(assignment, assignmentCatItem)
+      res.json({assignment, assignmentCatItem})
     } catch (err) {
       err.status = 400
       err.message = { error: err.message }

@@ -18,12 +18,6 @@ let CourseForm = props => {
           <label htmlFor="goalGPA">Goal GPA</label>
           {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
         </div>
-        <div className="col s12 m6">
-          <Field name="currentGPA" component="input" type="number" />
-          <label htmlFor="currentGPA">
-            Current GPA
-          </label>
-        </div>
         <button
         className="btn-floating btn-large waves-effect waves-light teal lighten-2"
           disabled={pristine || submitting}

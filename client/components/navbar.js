@@ -19,7 +19,7 @@ const Navbar = props => (
   <div>
     <nav className="light-red lighten-1" role="navigation">
       <div className="nav-wrapper container">
-        <Link to="/" className="brand-logo logo-container">
+        <Link to="/home" className="brand-logo logo-container">
           <i className="material-icons">store_mall_directory</i>
           <span className="flow-text truncate"> Last Resort </span>
         </Link>

@@ -57,7 +57,7 @@ export const postAssignment = (newAssignment, categoryId) => dispatch => {
   axios
     .post('/api/assignments', {newAssignment, categoryId})
     .then(({data}) => {
-      dispatch(addAssignment(data.assignments))
+      dispatch(addAssignment(data.assignment))
       dispatch(addAssignmentCat(data.assignmentCatItem))
     })
     .catch(error => console.error(error))
@@ -84,9 +84,11 @@ export default function(state = defaultAssignments, action) {
         allIds: action.assignments.map(assignment => assignment.id)
       }
     case ADD_ASSIGNMENT:
+    console.log("trying to add", action.addedAssignment)
       return {
         ...state, 
-        byId: {...state.byId, [action.addedAssignment.id]: action.addedAssignment},
+        byId: {...state.byId, [action.addedAssignment.id]: action.addedAssignment
+        },
         allIds: [...state.allIds, action.addedAssignment.id]
       }
     case UPDATE_ASSIGNMENT:
@@ -115,7 +117,7 @@ export default function(state = defaultAssignments, action) {
 export const getAssignmentByAssignment = (state, categoryId) => {
   return Object.values(state.assignmentCat.byId).reduce(
     (result, assCat) => {
-      console.log('category of each id', categoryId)
+      console.log('category of each id', assCat)
       if (assCat.categoryId === categoryId) {
         result.push(state.assignment.byId[assCat.assignmentId])
       }
@@ -125,11 +127,15 @@ export const getAssignmentByAssignment = (state, categoryId) => {
   )
 }
 
-// export const getProductsBySearch = (productsState, productName) => {
-//   return productsState.allIds.reduce((result, id) => {
-//     if (productsState.byId[id].title.toLowerCase().indexOf(productName.toLowerCase()) >= 0 || productsState.byId[id].description.indexOf(productName.toLowerCase()) >= 0) 
+export const getAvgAssignment = (state, categoryId) => {
+  return Object.values(state.assignmentCat.byId).reduce(
+    (total, amount) => {
+ 
+    if(amount.categoryId === categoryId) {
+      total+=state.assignment.byId[amount.assignmentId].grade;
+     
+      return total;
+    }
+    return total;
+  }, 0)}
 
-//     result.push(productsState.byId[id])
-//     return result
-//   }, [])
-// }
