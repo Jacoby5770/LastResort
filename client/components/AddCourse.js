@@ -2,10 +2,12 @@ import React from 'react'
 import {CourseForm} from '../components'
 import {postCourse} from '../store'
 import {connect} from 'react-redux'
+import history from '../history'
 
 class AddCourse extends React.Component {
-  submit = addedCourse => {
-    this.props.postCourse(addedCourse)
+  submit = async addedCourse => {
+    await this.props.postCourse(addedCourse)
+    history.push(`/home`)
   }
 
   render() {

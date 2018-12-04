@@ -24,6 +24,8 @@ let CourseForm = props => {
           type="submit"
         >
           Add
+          <i className="material-icons">add</i>
+
         </button>
       </form>
       {/* Hackish, needs to be rethought, but neccessary to keep materialize from
@@ -44,7 +46,7 @@ const mapDispatchToProps = dispatch => ({})
 const mapStateToProps = (state, {match}) => ({
   // This `initialValues` variable name below is required by redux-forms
   //only for edit, if there is a id in the url
-  initialValues: state.course
+  initialValues: state.course.byId[5]
 })
 
 CourseForm = reduxForm({form: 'courseForm'})(CourseForm)

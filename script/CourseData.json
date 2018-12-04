@@ -1,17 +1,14 @@
 [
     {
       "name": "Data Structure",
-      "goalGPA": 3.8,
-      "currentGPA": 3.5
-    },
+      "goalGPA": 3.8
+        },
     {
         "name": "Programming Languages",
-        "goalGPA": 4.0,
-        "currentGPA": 2.8
+        "goalGPA": 4.0
     },
     {
       "name": "Software Engineering",
-      "goalGPA": 4.0,
-      "currentGPA": 2.8
+      "goalGPA": 4.0
   }
   ]

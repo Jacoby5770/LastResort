@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getCourse } from '../store'
 
 class AllCourse extends React.Component {
     render() {
@@ -13,7 +14,7 @@ class AllCourse extends React.Component {
                         <br />
                             <Link
                                 to="/brightspace/add"
-                                className="orange lighten-2 waves-effect waves-light btn"
+                                className="blue lighten-2 waves-effect waves-light btn"
 
                             >
                                 Get Grade Data
@@ -59,7 +60,7 @@ const mapStateToProps = (state, ownProps) => {
     console.log('state in all course', state)
     return {
         //   product: state.products.byId[productId] || state.products.byId[0],
-        course: state.course
+        course: getCourse(state.course)
         //   isAdmin: !!state.user.admin
     }
 }

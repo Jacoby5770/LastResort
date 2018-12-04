@@ -14,7 +14,7 @@ const SingleCategory = props => {
                     <div className="collection center-align">
                     <br />
                     <br />
-                    <div>Here is your current average: {props.avgAssignment/props.assignment.length}</div>
+                    <div>Here is your current average: {props.avgAssignment}</div>
                         <br />
                         <Link
                             to={`/assignment/${props.match.params.categoryId}/add`}

@@ -132,7 +132,7 @@ export const getAvgAssignment = (state, categoryId) => {
     (total, amount) => {
  
     if(amount.categoryId === categoryId) {
-      total+=state.assignment.byId[amount.assignmentId].grade;
+      total = total + state.assignment.byId[amount.assignmentId].grade*state.assignment.byId[amount.assignmentId].gradeWeight;
      
       return total;
     }

@@ -17,15 +17,6 @@ const Course = db.define('course', {
             min: 0.0,
             notEmpty: true
         }
-    },
-    currentGPA: {
-        type: Sequelize.DECIMAL,
-        allowNull: false,
-        validate: {
-            max: 4.0,
-            min: 0.0,
-            notEmpty: true
-        }
     }
 })
 

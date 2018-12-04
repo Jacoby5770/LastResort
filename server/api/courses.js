@@ -5,15 +5,13 @@ module.exports = router
 const createCourseFromJSON = body => ({
   name: '' + body.name,
   goalGPA: +body.goalGPA,
-  currentGPA: +body.currentGPA,
-  
 })
 
  router
  .route('/')
  .get(async (req, res, next) => {
   try {
-    console.log('getting the courses', req.body)
+    console.log('**************getting the courses', req.body)
     const course = await Course.findAll({
     })
     res.json(course)
@@ -23,6 +21,7 @@ const createCourseFromJSON = body => ({
 })
 .post(async (req, res, next) => {
   try {
+    console.log('***********posting course', req.body)
     const course = await Course.create(createCourseFromJSON(req.body))
     res.json(course)
   } catch (err) {

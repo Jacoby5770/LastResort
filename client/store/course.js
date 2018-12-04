@@ -7,6 +7,21 @@ const GET_COURSES = 'GET_COURSES'
 const ADD_COURSES = 'ADD_COURSES'
 const UPDATE_COURSES = 'UPDATE_COURSES'
 
+/**
+ * INITIAL STATE
+ */
+const defaultCourse = {
+    byId: {
+      0: {
+        id: 0,
+        name: 'Loading...',
+        goalGPA: 0,
+        currentGPA: 0
+      }
+    },
+    allIds: []
+  }
+
 // ACTION CREATORS
 
 const gotCourses = courses => ({
@@ -60,11 +75,28 @@ export const putCourseById = updateCourse => dispatch => {
 export default function (state = [], action) {
     switch (action.type) {
         case GET_COURSES:
-            return action.courses
-        case ADD_COURSES:
-            return [...state, action.addCourse]
+        return {
+          ...state,
+          byId: action.courses.reduce((result, course) => {
+            result[course.id] = course
+            return result
+          }, {}),
+          allIds: action.courses.map(course => course.id)
+        }
+      case ADD_COURSES:
+        return {
+          ...state,
+          byId: {...state.byId, [action.addCourse.id]: action.addCourse},
+          allIds: [...state.allIds, action.addCourse.id]
+        }
         default:
             return state
     }
 }
 
+export const getCourse = courseState => {
+    return courseState.allIds.reduce((result, id) => {
+      result.push(courseState.byId[id])
+      return result
+    }, [])
+  }
