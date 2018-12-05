@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getCourse } from '../store'
+import { getCourse, dataJSON } from '../store'
 
 class AllCourse extends React.Component {
     render() {

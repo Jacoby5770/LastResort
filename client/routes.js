@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory, AddAssignment, AddBrightspace } from './components'
-import { me, getCourses, getCategories, getAssignments, getAssignmentCats } from './store'
+import { me, getCourses, getCategories, getAssignments, getAssignmentCats, getDatas } from './store'
 
 /**
  * COMPONENT
@@ -73,6 +73,7 @@ const mapDispatch = dispatch => {
       await dispatch(getCategories())
       await dispatch(getAssignments())
       await dispatch(getAssignmentCats())
+      await dispatch(getDatas())
     }
   }
 }
