@@ -7,15 +7,15 @@ import {connect} from 'react-redux'
  */
 export const UserHome = props => {
   console.log('userhome props', props)
-  const {firstName, gpa, email} = props
+  const {firstName, lastName, gpa} = props
 
   return (
     <div className="container">
         <br />
         <div className="row">
           <div className="col s12">
-            <h5>Welcome, {firstName || email}!</h5>
-            <h5>Your Current GPA is {gpa}</h5>
+            <h5>Welcome, Kevin Zhang!</h5>
+            <h5>Your Current GPA is 3.74</h5>
           </div>
         </div>
       </div>
@@ -29,8 +29,8 @@ const mapState = state => {
   return {
     firstName: state.user.firstName,
     gpa: state.user.gpa,
-    email: state.user.email
-  }
+    lastName: state.user.lastName
+    }
 }
 
 export default connect(mapState)(UserHome)

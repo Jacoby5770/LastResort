@@ -58,6 +58,7 @@ class AllCourse extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // const productId = Number(ownProps.match.params.productId)
     console.log('state in all course', state)
+    
     return {
         //   product: state.products.byId[productId] || state.products.byId[0],
         course: getCourse(state.course)

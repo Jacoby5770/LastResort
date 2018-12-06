@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory, AddAssignment, AddBrightspace } from './components'
-import { me, getCourses, getCategories, getAssignments, getAssignmentCats, getDatas } from './store'
+import { me, getCourses, getCategories, getAssignments, getAssignmentCats, getDatas, getUsers } from './store'
 
 /**
  * COMPONENT
@@ -30,7 +30,7 @@ class Routes extends Component {
           component={SingleCategory}
         />
         <Route exact path="/home" component={AllCourse} />
-        {/* <Route path="/home" component={UserHome} /> */}
+        <Route path="/welcome" component={UserHome} />
         <Route path="/course/add" component={AddCourse} />
         <Route path="/assignment/:categoryId/add" component={AddAssignment} />
         <Route path="/" component={AddBrightspace} />
@@ -68,7 +68,7 @@ const mapDispatch = dispatch => {
   console.log('dispatch in')
   return {
     async loadInitialData() {
-      await dispatch(me())
+      await dispatch(getUsers())
       await dispatch(getCourses())
       await dispatch(getCategories())
       await dispatch(getAssignments())

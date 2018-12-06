@@ -6,30 +6,15 @@ const courseData = require('./CourseData')
 const categoryData = require('./CategoryData')
 const categoryLineItemData = require('./CategoryLineItemData')
 const assignmentData = require('./AssignmentData')
+const userData = require('./UserData')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({
-      firstName: 'cody',
-      lastName: 'codylastname',
-      admin: true,
-      year: 'junior',
-      gpa: 3.3,
-      email: 'cody@email.com', 
-      password: '123'
-    }),
-    User.create({
-      firstName: 'jacoby',
-      lastName: 'kang',
-      admin: true,
-      year: 'junior',
-      gpa: 2.5,
-      email: 'jacoby@email.com', 
-      password: '456'
-    }),  ])
+  const users = await Promise.all(      
+    userData.map(user => User.create(user))
+)
 
     const courses = await Promise.all(
       courseData.map(course => Course.create(course))

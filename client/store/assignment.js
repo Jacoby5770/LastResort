@@ -139,3 +139,18 @@ export const getAvgAssignment = (state, categoryId) => {
     return total;
   }, 0)}
 
+  export const getTotAssignment = (state, categoryId) => {
+    return Object.values(state.assignmentCat.byId).reduce(
+      (total, amount) => {
+
+        console.log('lknflknflk', state.assignment.byId[amount.assignmentId].gradeWeight)
+   
+      if(amount.categoryId === categoryId) {
+        console.log('lknflknflk', state.assignment.byId[amount.assignmentId].gradeWeight)
+        total = total + state.assignment.byId[amount.assignmentId].gradeWeight*100;
+       
+        return total;
+      }
+      return total;
+    }, 0)}
+
