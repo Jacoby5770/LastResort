@@ -9,7 +9,7 @@ class AddBrightspace extends React.Component {
     // const currentCourseId = Number(this.props.match.params.courseId)
     // addedCategory.courseId = currentCourseId
     // this.props.postCategory(addedCategory)
-    history.push(`/welcome`)
+    history.push(`/home`)
   }
 
   render() {
