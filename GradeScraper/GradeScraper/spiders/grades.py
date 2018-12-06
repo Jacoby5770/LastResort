@@ -10,7 +10,7 @@ from GradeScraper.items import GradeData
 class GradesSpider(scrapy.Spider):
     name = 'grades'
     custom_settings = {
-        'SPLASH_URL': 'http://localhost:8050', #'http://192.168.99.100:8050/',
+        'SPLASH_URL': 'http://localhost:8050', # 'http://192.168.99.100:8050/',
         'DOWNLOADER_MIDDLEWARES': {
             'scrapy_splash.SplashCookiesMiddleware': 723,
             'scrapy_splash.SplashMiddleware': 725,
@@ -32,10 +32,10 @@ class GradesSpider(scrapy.Spider):
             splash:init_cookies(args.cookies)
             assert(splash:go(args.url))
             assert(splash:wait(5))
-            local entries = splash:history()
-            local last_response = entries[#entries].response
+            -- local entries = splash:history()
+            -- local last_response = entries[#entries].response
             return {
-                headers = last_response.headers,
+                -- headers = last_response.headers,
                 cookies = splash:get_cookies(),
                 html = splash:html(),
             }
@@ -72,15 +72,11 @@ class GradesSpider(scrapy.Spider):
     def start_requests(self):
         script = """
         function main(splash, args)
-            splash:init_cookies(args.cookies)
             assert(splash:go(args.url))
             assert(splash:wait(3))
             assert(splash:runjs('document.getElementById("username").value = "{}"; document.getElementById("password").value = "{}"; setTimeout(postOk(), 1000);'))
             assert(splash:wait(15))
-            local entries = splash:history()
-            local last_response = entries[#entries].response
             return {{
-                headers = last_response.headers,
                 cookies = splash:get_cookies(),
                 html = splash:html(),
             }}
@@ -95,9 +91,9 @@ class GradesSpider(scrapy.Spider):
 
     def parseHome(self, response):
         classURLs = response.css('d2l-tab-panel[aria-label="2018 Fall"] div.my-courses-content.style-scope.d2l-my-courses-content a.d2l-focusable.style-scope.d2l-card::attr(href)')
-        with open("response.txt", 'w') as f:
-            f.write(str(response.body))
-        # self.headers = response.headers
+        # with open("response.txt", 'w') as f:
+        #     f.write(str(response.body))
+        print(response.headers)
         for href in classURLs:
             nextURL = self.baseURL+href.extract()
             print(nextURL)
@@ -110,14 +106,10 @@ class GradesSpider(scrapy.Spider):
             )
 
     def parseClassURL(self, response):
-        # with open("response.txt", 'w') as f:
+        # with open("response1.txt", 'w') as f:
         #     f.write(str(response.body))
-        # print(response.headers)
-        # print("VERSUS")
-        # print(self.headers)
-        # classProgressURL = response.xpath('//a[@class="d2l-navigation-s-link" and text()="Class Progress"]/@href').extract_first()
-        # print("HERE")
-        # print(self.baseURL+classProgressURL)
+        print("NEXT")
+        print(response.headers)
         gradeURL = response.xpath('//a[@class="d2l-navigation-s-link" and text()="Grades"]/@href').extract_first()
         if gradeURL:
             print(self.baseURL+gradeURL)
@@ -140,8 +132,8 @@ class GradesSpider(scrapy.Spider):
             )
 
     def parseGrades(self, response):
-        with open("response2.txt", 'w') as f:
-            f.write(str(response.body))
+        # with open("response2.txt", 'w') as f:
+        #     f.write(str(response.body))
         data = GradeData()
         data['grades'] = dict()
         className = response.css('div.d2l-navigation-s-title-container a.d2l-navigation-s-link::text').extract_first()
@@ -152,8 +144,8 @@ class GradesSpider(scrapy.Spider):
         return data
 
     def parseClassProgress(self, response):
-        with open("response1.txt", 'w') as f:
-            f.write(str(response.body))
+        # with open("response3.txt", 'w') as f:
+        #     f.write(str(response.body))
         data = GradeData()
         data['grades'] = dict()
         className = response.css('div.d2l-navigation-s-title-container a.d2l-navigation-s-link::text').extract_first()
