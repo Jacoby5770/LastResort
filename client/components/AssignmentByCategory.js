@@ -9,13 +9,21 @@ const AssignmentByCategory = props => (
       <div key={assignment.id} className="col s12">
         <div className="card blue-grey">
           <div className="card-content white-text">
+          {/* <Link
+              to={`/assignment/${props.courseId}/${assignment.id}/edit`}
+              className="blue waves-effect right  waves-light btn"
+            >
+              Edit Grade
+              <i className="material-icons right">edit</i>
+            </Link> */}
             <p className="flow-text" id={`assignment_${assignment.id}`}>
+      
             {assignment.category}
             <br />
             {assignment.grade}
             </p>
+            
           </div>
-  
         </div>
       </div>
     ))}

@@ -2,11 +2,11 @@ const router = require('express').Router()
 const { Assignment, Category, CategoryLineItem } = require('../db/models')
 module.exports = router
 
-// const createAssignmentFromJSON = body => ({
-//   category: '' + body.category,
-//   grade: +body.grade,
+const createAssignmentFromJSON = body => ({
+  category: '' + body.category,
+  grade: +body.grade,
 
-// })
+})
 
 router
   .route('/')
@@ -40,4 +40,15 @@ router
       next(err)
     }
   })
+  // .put('/:assignmentId', (req, res, next) => {
+   
+  //     Assignment.update(createAssignmentFromJSON(req.body), {
+       
+  //     })
+  //       .spread(
+  //         (done, updatedRev) =>
+  //           done ? res.json(...updatedRev) : res.status(404).end()
+  //       )
+  //       .catch(next)
+  // })
 

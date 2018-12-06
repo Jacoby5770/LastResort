@@ -1,22 +1,22 @@
 [
   {
-    "category": "Final Exam",
+    "category": "Quiz 1",
     "gradeWeight": 0.4,
     "courseId": 1
   },
   {
-    "category": "Assignment",
+    "category": "Assignment 3",
     "gradeWeight": 0.2,
     "courseId": 1
   },
   {
-    "category": "Exam",
+    "category": "Assignment 2",
     "gradeWeight": 0.3,
-    "courseId": 2
+    "courseId": 1
   },
   {
-    "category": "Quiz",
+    "category": "Assignment 2",
     "gradeWeight": 0.1,
-    "courseId": 2
+    "courseId": 1
   }
 ]

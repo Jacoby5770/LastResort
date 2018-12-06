@@ -6,15 +6,14 @@ const courseData = require('./CourseData')
 const categoryData = require('./CategoryData')
 const categoryLineItemData = require('./CategoryLineItemData')
 const assignmentData = require('./AssignmentData')
-const userData = require('./UserData')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all(      
-    userData.map(user => User.create(user))
-)
+//   const users = await Promise.all(      
+//     userData.map(user => User.create(user))
+// )
 
     const courses = await Promise.all(
       courseData.map(course => Course.create(course))
@@ -32,7 +31,7 @@ async function seed() {
       categoryLineItemData.map(categoryLineItem => CategoryLineItem.create(categoryLineItem))
     )
 
-  console.log(`seeded ${users.length} users`)
+  // console.log(`seeded ${users.length} users`)
   console.log(`seeded ${courses.length} course`)
   console.log(`seeded ${categories.length} category`)
   console.log(`seeded ${categoryLineItems.length} categoryLineItem`)

@@ -25,7 +25,7 @@ const SingleCategory = props => {
                         <br />
 
                         </Link>
-                        <AssignmentByCategory assignment={props.assignment} />
+                        <AssignmentByCategory courseId = {props.match.params.categoryId}assignment={props.assignment} />
                     </div>
                 </div>
             </div>
