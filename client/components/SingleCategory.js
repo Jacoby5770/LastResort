@@ -14,7 +14,7 @@ const SingleCategory = props => {
                     <div className="collection center-align">
                     <br />
                     <br />
-                    <div>Here is your current average: {props.avgAssignment}</div>
+                    <div>Here is your current grade: {props.avgAssignment}/100</div>
                         <br />
                         <Link
                             to={`/assignment/${props.match.params.categoryId}/add`}

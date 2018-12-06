@@ -7,10 +7,10 @@ import {Link} from 'react-router-dom'
 const LoggedInLinks = props => (
   <span>
     <li>
-      <Link to="/">Home</Link>
+      <Link to="/home">Home</Link>
     </li>
     <li>
-      <Link to="/home">Account</Link>
+      <Link to="/">Account</Link>
     </li>
   </span>
 )
