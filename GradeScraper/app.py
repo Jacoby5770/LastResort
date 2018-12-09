@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def test():
-    resp = Response("Flask is working")
+    resp = Response("Flask is running")
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
@@ -26,6 +26,15 @@ def scrape_data():
     with open('output.json') as items_file:
         results = items_file.read()
     os.remove('output.json')
+    resp = Response(results)
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Content-Type'] = 'application/json'
+    return resp
+
+@app.route('/demo-grades')
+def demo():
+    with open('output.json') as items_file:
+        results = items_file.read()
     resp = Response(results)
     resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Content-Type'] = 'application/json'

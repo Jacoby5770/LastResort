@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import scrapy, re
+import scrapy, re, base64
 try:
     from itertools import zip_longest
 except ImportError:
@@ -25,8 +25,8 @@ class GradesSpider(scrapy.Spider):
     def __init__(self, username='default', password='default'):
         self.baseURL = 'https://brightspace.vanderbilt.edu'
         self.username = username
-        self.password = password
-        print(username, password)
+        self.password = (base64.b64decode(bytes(password, 'utf-8'))).decode('utf-8')
+        # print(username, password)
         self.renderPage = """
         function main(splash, args)
             splash:init_cookies(args.cookies)
@@ -36,7 +36,7 @@ class GradesSpider(scrapy.Spider):
             -- local last_response = entries[#entries].response
             return {
                 -- headers = last_response.headers,
-                cookies = splash:get_cookies(),
+                -- cookies = splash:get_cookies(),
                 html = splash:html(),
             }
         end
@@ -76,7 +76,10 @@ class GradesSpider(scrapy.Spider):
             assert(splash:wait(3))
             assert(splash:runjs('document.getElementById("username").value = "{}"; document.getElementById("password").value = "{}"; setTimeout(postOk(), 1000);'))
             assert(splash:wait(15))
+            -- local entries = splash:history()
+            -- local last_response = entries[#entries].response
             return {{
+                -- headers = last_response.headers,
                 cookies = splash:get_cookies(),
                 html = splash:html(),
             }}
@@ -87,13 +90,15 @@ class GradesSpider(scrapy.Spider):
             self.parseHome,
             endpoint='execute',
             args={'lua_source': script, 'timeout': 30},
+            headers={'User-Agent': 'Mozilla/5.0'}
         )
 
     def parseHome(self, response):
+        with open("response.txt", 'w') as f:
+            f.write(str(response.body))
         classURLs = response.css('d2l-tab-panel[aria-label="2018 Fall"] div.my-courses-content.style-scope.d2l-my-courses-content a.d2l-focusable.style-scope.d2l-card::attr(href)')
-        # with open("response.txt", 'w') as f:
-        #     f.write(str(response.body))
-        print(response.headers)
+        # print(response.headers)
+        self.headers = response.headers
         for href in classURLs:
             nextURL = self.baseURL+href.extract()
             print(nextURL)
@@ -108,8 +113,7 @@ class GradesSpider(scrapy.Spider):
     def parseClassURL(self, response):
         # with open("response1.txt", 'w') as f:
         #     f.write(str(response.body))
-        print("NEXT")
-        print(response.headers)
+        # print(response.headers)
         gradeURL = response.xpath('//a[@class="d2l-navigation-s-link" and text()="Grades"]/@href').extract_first()
         if gradeURL:
             print(self.baseURL+gradeURL)
@@ -118,7 +122,7 @@ class GradesSpider(scrapy.Spider):
                 self.parseGrades,
                 endpoint='execute',
                 args={'lua_source': self.renderGrades, 'timeout': 30},
-                headers=response.headers,
+                headers=self.headers,
             )
         classProgressURL = response.xpath('//a[@class="d2l-navigation-s-link" and text()="Class Progress"]/@href').extract_first()
         if classProgressURL:
@@ -128,7 +132,7 @@ class GradesSpider(scrapy.Spider):
                 self.parseClassProgress,
                 endpoint='execute',
                 args={'lua_source': self.expandGrades, 'timeout': 30},
-                headers=response.headers,
+                headers=self.headers,
             )
 
     def parseGrades(self, response):
