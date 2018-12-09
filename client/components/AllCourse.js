@@ -3,19 +3,20 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getCourse, dataJSON } from '../store'
 
+// all the course
 class AllCourse extends React.Component {
     render() {
         console.log('props in allcourse', this.props)
         return (
             <div className="container">
                 <div className="row">
-                <div className="col s12">
-            <h5>Welcome, Jacoby Kang!</h5>
-            <h5>Your Current GPA is 3.74</h5>
-          </div>
+                
                     <div className="col s12 m6 push-m3 center-align">
                         <div className="collection center-align">
-                        <br />
+                        <h5>Welcome, Jacoby Kang!</h5>
+            <h5>Your Current GPA is 3.74</h5>
+            <br />
+
                             <Link
                                 to="/brightspace/add"
                                 className="teal lighten-2 waves-effect waves-light btn"

@@ -4,6 +4,7 @@ import {postAssignment} from '../store'
 import {connect} from 'react-redux'
 import history from '../history'
 
+// add individual assignment 
 class AddAssignment extends React.Component {
   submit = async addedAssignment => {
 

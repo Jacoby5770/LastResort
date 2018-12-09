@@ -3,6 +3,7 @@ import {CategoryForm} from '../components'
 import {postCategory} from '../store'
 import {connect} from 'react-redux'
 
+// deprecated because category not useful
 class AddCategory extends React.Component {
   submit = addedCategory => {
     const currentCourseId = Number(this.props.match.params.courseId)

@@ -6,6 +6,7 @@ import {auth} from '../store'
 /**
  * COMPONENT
  */
+//deprecated
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 

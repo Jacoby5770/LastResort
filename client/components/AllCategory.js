@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+// all of the categories
 class AllCategory extends React.Component {
     render() {
         console.log('in all category checking for props', this.props)

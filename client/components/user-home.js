@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 /**
  * COMPONENT
  */
+// deprecated
 export const UserHome = props => {
   console.log('userhome props', props)
   const {firstName, lastName, gpa} = props

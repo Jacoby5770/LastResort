@@ -15,6 +15,7 @@ const LoggedInLinks = props => (
   </span>
 )
 
+// navbar including home and account
 const Navbar = props => (
   <div>
     <nav className="light-red lighten-1" role="navigation">

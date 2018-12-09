@@ -114,6 +114,7 @@ export default function(state = defaultAssignments, action) {
 //   }, [])
 // }
 
+//assignments by course
 export const getAssignmentByAssignment = (state, categoryId) => {
   return Object.values(state.assignmentCat.byId).reduce(
     (result, assCat) => {
@@ -127,6 +128,7 @@ export const getAssignmentByAssignment = (state, categoryId) => {
   )
 }
 
+//get average grade 
 export const getAvgAssignment = (state, categoryId) => {
   return Object.values(state.assignmentCat.byId).reduce(
     (total, amount) => {
@@ -139,6 +141,7 @@ export const getAvgAssignment = (state, categoryId) => {
     return total;
   }, 0)}
 
+  //get total number of assignments 
   export const getTotAssignment = (state, categoryId) => {
     return Object.values(state.assignmentCat.byId).reduce(
       (total, amount) => {

@@ -4,6 +4,7 @@ import {AssignmentForm} from '../components'
 import {putAssignment} from '../store'
 import {connect} from 'react-redux'
 
+// edit assignment class
 class EditAssignment extends React.Component {
   submit = editedAsg => {
     this.props.putAssignment(editedAsg)

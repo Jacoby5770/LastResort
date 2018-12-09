@@ -4,8 +4,9 @@ import {BrightspaceForm} from '../components'
 import {connect} from 'react-redux'
 import history from '../history'
 
+// deprecated because we made requests to server for brightspace information
 class AddBrightspace extends React.Component {
-  submit = addedCategory => {
+  submit = addedBrightspace => {
     // const currentCourseId = Number(this.props.match.params.courseId)
     // addedCategory.courseId = currentCourseId
     // this.props.postCategory(addedCategory)

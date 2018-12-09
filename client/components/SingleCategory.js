@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { AssignmentByCategory } from '../components'
 import { getAssignmentByAssignment, getAvgAssignment, getTotAssignment } from '../store'
 
+// deprecated
 const SingleCategory = props => {
     console.log('props in single category fegr', props)
     return (

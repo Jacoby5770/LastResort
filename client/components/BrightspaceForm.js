@@ -2,6 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
+// form to add brightspace information
 let BrightspaceForm = props => {
     const { handleSubmit, pristine, submitting } = props
     return (

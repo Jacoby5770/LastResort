@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { AllCategory } from '../components'
 import { getCategoriesByCourse } from '../store'
 
-
+// individual course page
 const SingleCourse = props => {
     console.log('props in single course', props)
     const { course } = props
