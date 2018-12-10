@@ -4,13 +4,12 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const Assignment = db.model('assignment')
+const {Assignment} = require('../db/models')
 
-xdescribe('Test Assignment routes', () => {
-
-  describe('Get from /api/assignments/', () => {
-    const category = 'Test Assignment 1'
-    const gradeWeight = 0.5
+describe('Test Assignment routes', () => {
+  describe('Get from /api/assignments', () => {
+    const category = 'Assignment 3'
+    const gradeWeight = 0.1
     const grade = 100
     
     beforeEach(() => {
@@ -27,15 +26,13 @@ xdescribe('Test Assignment routes', () => {
         .expect(200)
 
       expect(res.body).to.be.an('array')
-      expect(res.body.length).to.equal(1)
       expect(res.body[0].category).to.be.equal(category)
-      expect(+gradeWeight.body[0].gradeWeight).to.be.equal(gradeWeight)
+      expect(+res.body[0].gradeWeight).to.be.equal(gradeWeight)
       expect(+res.body[0].grade).to.be.equal(grade)
     })
   })
 
   describe('Get from /api/assignments/', () => {
-
     it('handles good POST requests to /api/assigments', async () => {
       const newAssignment = {
         category: "Final Exam",
@@ -49,8 +46,7 @@ xdescribe('Test Assignment routes', () => {
         .expect(200)
 
       expect(res.body).to.be.an('object')
-      expect(res.body.id).to.be.equal(2)
-      expect(res.body.description).to.be.equal("Final Exam")
+      expect(res.body.category).to.be.equal("Final Exam")
       expect(+res.body.gradeWeight).to.be.equal(0.5)
       expect(+res.body.grade).to.be.equal(100)
     })
