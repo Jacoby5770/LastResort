@@ -8,7 +8,7 @@ const {Assignment} = require('../db/models')
 
 describe('Test Assignment routes', () => {
   describe('Get from /api/assignments', () => {
-    const category = 'Assignment 3'
+    const category = 'Quiz 1'
     const gradeWeight = 0.1
     const grade = 100
     
@@ -50,7 +50,14 @@ describe('Test Assignment routes', () => {
       expect(+res.body.gradeWeight).to.be.equal(0.5)
       expect(+res.body.grade).to.be.equal(100)
     })
-
+    it('handles BAD POST to /api/assignments', async () => {
+      const badProduct = {}
+      const res = await request(app)
+        .post('/api/assignments')
+        .send(badProduct)
+        .expect(400)
+      expect(res.body.error).to.contain('notNull')
+    })
 
   }) // end describe('/api/products')
 }) // end describe('Product routes')
