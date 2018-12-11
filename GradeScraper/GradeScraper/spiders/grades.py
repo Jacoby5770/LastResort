@@ -22,7 +22,7 @@ class GradesSpider(scrapy.Spider):
         'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter',
     }
 
-    def __init__(self, username='default', password='default'):
+    def __init__(self, username='default', password='ZGVmYXVsdA=='):
         self.baseURL = 'https://brightspace.vanderbilt.edu'
         self.username = username
         self.password = (base64.b64decode(bytes(password, 'utf-8'))).decode('utf-8')
@@ -94,8 +94,8 @@ class GradesSpider(scrapy.Spider):
         )
 
     def parseHome(self, response):
-        with open("response.txt", 'w') as f:
-            f.write(str(response.body))
+        # with open("response.txt", 'w') as f:
+        #     f.write(str(response.body))
         classURLs = response.css('d2l-tab-panel[aria-label="2018 Fall"] div.my-courses-content.style-scope.d2l-my-courses-content a.d2l-focusable.style-scope.d2l-card::attr(href)')
         # print(response.headers)
         self.headers = response.headers
@@ -110,12 +110,19 @@ class GradesSpider(scrapy.Spider):
                 headers=response.headers,
             )
 
+    def _parseHomeForTest(self, response):
+        classURLs = response.css('d2l-tab-panel[aria-label="2018 Fall"] div.my-courses-content.style-scope.d2l-my-courses-content a.d2l-focusable.style-scope.d2l-card::attr(href)')
+        for href in classURLs:
+            nextURL = self.baseURL+href.extract()
+            yield nextURL
+
     def parseClassURL(self, response):
         # with open("response1.txt", 'w') as f:
         #     f.write(str(response.body))
         # print(response.headers)
         gradeURL = response.xpath('//a[@class="d2l-navigation-s-link" and text()="Grades"]/@href').extract_first()
         if gradeURL:
+            gradeURL = gradeURL.replace('index', 'my_grades/main')
             print(self.baseURL+gradeURL)
             return SplashRequest(
                 self.baseURL+gradeURL, 
@@ -134,6 +141,15 @@ class GradesSpider(scrapy.Spider):
                 args={'lua_source': self.expandGrades, 'timeout': 30},
                 headers=self.headers,
             )
+
+    def _parseClassURLForTest(self, response):
+        gradeURL = response.xpath('//a[@class="d2l-navigation-s-link" and text()="Grades"]/@href').extract_first()
+        if gradeURL:
+            gradeURL = gradeURL.replace('index', 'my_grades/main')
+            return self.baseURL + gradeURL
+        classProgressURL = response.xpath('//a[@class="d2l-navigation-s-link" and text()="Class Progress"]/@href').extract_first()
+        if classProgressURL:
+            return self.baseURL + classProgressURL
 
     def parseGrades(self, response):
         # with open("response2.txt", 'w') as f:
