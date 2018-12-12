@@ -10,15 +10,6 @@ const UPDATE_COURSES = 'UPDATE_COURSES'
 /**
  * INITIAL STATE
  */
-const defaultCourse = {
-    byId: {
-      0: {
-        id: 0,
-        name: 'Loading...'       
-      }
-    },
-    allIds: []
-  }
 
 // ACTION CREATORS
 
@@ -72,21 +63,10 @@ export const putCourseById = updateCourse => dispatch => {
 
 export default function (state = [], action) {
     switch (action.type) {
-        case GET_COURSES:
-        return {
-          ...state,
-          byId: action.courses.reduce((result, course) => {
-            result[course.id] = course
-            return result
-          }, {}),
-          allIds: action.courses.map(course => course.id)
-        }
-      case ADD_COURSES:
-        return {
-          ...state,
-          byId: {...state.byId, [action.addCourse.id]: action.addCourse},
-          allIds: [...state.allIds, action.addCourse.id]
-        }
+      case GET_COURSES:
+      return action.courses
+    case ADD_COURSES:
+      return [...state, action.addCourse]
         default:
             return state
     }
@@ -181,12 +161,14 @@ export const dataJSON = [
 //     }, [])
 //   }
 
-for (var i = 0; i < dataJSON.length; i++) {
-    dataJSON[i].grades.id = i+1;
-    postCourse(dataJSON[i].grades.className)
-}
+// for (var i = 0; i < dataJSON.length; i++) {
+//     dataJSON[i].grades.id = i+1;
+//     postCourse({"name": dataJSON[i].grades.className})
+// }
+
 
 export const getCourse = () => {
+
     var dataMap = [];
     for (var i = 0; i < dataJSON.length; i++) {
         dataMap.push({"id": i+1, "className": dataJSON[i].grades.className});

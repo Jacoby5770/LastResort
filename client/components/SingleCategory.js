@@ -37,7 +37,7 @@ const mapStateToProps = (state, ownProps) => {
     const courseId = Number(ownProps.match.params.categoryId)
     console.log("state*********", courseId)
     return {
-        assignment: getAssignmentByAssignment(courseId),
+        assignment: getAssignmentByAssignment(state, courseId),
         category: state.category,
         avgAssignment: getAvgAssignment(state, courseId) || [],
         totAssignment: getTotAssignment(state, courseId) || []

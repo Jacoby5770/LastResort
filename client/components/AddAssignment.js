@@ -7,7 +7,6 @@ import history from '../history'
 class AddAssignment extends React.Component {
   submit = async addedAssignment => {
     const currentCategoryId = (this.props.match.params.categoryId)
-    console.log('lsknvkln', currentCategoryId)
     await this.props.postAssignment(addedAssignment, currentCategoryId)
     addedAssignment.categoryId = currentCategoryId
     history.push(`/category/${currentCategoryId}`)

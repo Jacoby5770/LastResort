@@ -43,7 +43,7 @@ const mapDispatchToProps = dispatch => ({})
 const mapStateToProps = (state, {match}) => ({
   // This `initialValues` variable name below is required by redux-forms
   //only for edit, if there is a id in the url
-  initialValues: state.course.byId[5]
+  initialValues: state.course
 })
 
 CourseForm = reduxForm({form: 'courseForm'})(CourseForm)

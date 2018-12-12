@@ -7,6 +7,8 @@ import history from '../history'
 // add individual course 
 class AddCourse extends React.Component {
   submit = async addedCourse => {
+    console.log('added', addedCourse)
+
     await this.props.postCourse(addedCourse)
     history.push(`/home`)
   }

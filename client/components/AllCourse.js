@@ -10,8 +10,8 @@ class AllCourse extends React.Component {
             <div className="container">
                 <div className="row">
                 <div className="col s12">
-            <h5>Welcome, Kevin Zhang!</h5>
-            <h5>Your Current GPA is 3.74</h5>
+            <h5>Welcome, XXX!</h5>
+            <h5>Your Current GPA is X.XX</h5>
           </div>
                     <div className="col s12 m6 push-m3 center-align">
                         <div className="collection center-align">
@@ -35,7 +35,7 @@ class AllCourse extends React.Component {
                                     <div className="flow-text truncate collection-item">
                                         <Link to={`/category/${individualCourse.id}`}>
                                             <div className="card-content black-text">
-                                                {individualCourse.className}
+                                                {individualCourse.name}
                                             </div>
                                         </Link>
                                     </div>
@@ -55,7 +55,7 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         //   product: state.products.byId[productId] || state.products.byId[0],
-        course: getCourse()
+        course: state.course
         //   isAdmin: !!state.user.admin
     }
 }
