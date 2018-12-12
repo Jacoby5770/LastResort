@@ -152,9 +152,9 @@ export const getAvgAssignment = (state, courseId) => {
     if(amount.categoryId === courseId) {
       total = total + state.assignment.byId[amount.assignmentId].grade*state.assignment.byId[amount.assignmentId].gradeWeight;
      
-      return total;
+      return Math.trunc(total);
     }
-    return total;
+    return Math.trunc(total);
   }, 0)}
 
   export const getTotAssignment = (state, courseId) => {
@@ -164,7 +164,7 @@ export const getAvgAssignment = (state, courseId) => {
       if(amount.categoryId === courseId) {
         total = total + state.assignment.byId[amount.assignmentId].gradeWeight*100;
        
-        return total;
+        return Math.trunc(total);
       }
-      return total;
+      return Math.trunc(total);
     }, 0)}

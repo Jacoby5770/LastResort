@@ -19,5 +19,6 @@ export {default as AddBrightspace} from './AddBrightspace'
 export {default as BrightspaceForm} from './BrightspaceForm'
 export {default as AddAssignment} from './AddAssignment'
 export {default as EditAssignment} from './EditAssignment'
+export {default as Loading} from './Loading'
 export {Login, Signup} from './auth-form'
 

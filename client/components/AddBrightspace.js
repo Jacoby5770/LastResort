@@ -8,8 +8,8 @@ class AddBrightspace extends React.Component {
   submit = (credentials) => {
     // const currentCourseId = Number(this.props.match.params.courseId)
     // addedCategory.courseId = currentCourseId
+    history.push(`/loading`)
     this.props.postAssignment(credentials)
-    history.push(`/home`)
   }
 
   render() {
@@ -74,9 +74,10 @@ const mapDispatchToProps = dispatch => {
         dataJSON[i].grades.id = i+1;
         dispatch(postCourse({"name": dataJSON[i].grades.className, "userId": null}))
       }
+      history.push(`/home`)
         }
     }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.open("GET", url, true); // true for asynchronous
     xmlHttp.responseType = 'json';
     xmlHttp.send(null);
     }
