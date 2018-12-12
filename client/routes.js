@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory, AddAssignment, AddBrightspace } from './components'
+import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory, AddAssignment, AddBrightspace, Loading } from './components'
 import { me, getCourses, getCategories, getAssignments, getAssignmentCats, getUsers } from './store'
 
 /**
@@ -29,6 +29,7 @@ class Routes extends Component {
           path="/category/:categoryId([0-9]*)"
           component={SingleCategory}
         />
+        <Route exact path="/loading" component={Loading} />
         <Route exact path="/home" component={AllCourse} />
         <Route path="/welcome" component={UserHome} />
         <Route path="/course/add" component={AddCourse} />
@@ -43,6 +44,7 @@ class Routes extends Component {
           path="/course/:courseId([0-9]*)"
           component={SingleCourse}
         />
+        <Route path="/loading" component={Loading} />
       </Switch>
 
       //   )}

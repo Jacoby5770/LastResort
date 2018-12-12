@@ -50,6 +50,8 @@ const mapStateToProps = (state, { match }) => ({
     // This `initialValues` variable name below is required by redux-forms
     //only for edit, if there is a id in the url
     // initialValues: state.category.byId[match.params.categoryId]
+    // initialValues: state.assignment.byId[match.params.assignmentId]
+
 })
 
 BrightspaceForm = reduxForm({ form: 'brightspaceForm' })(BrightspaceForm)
