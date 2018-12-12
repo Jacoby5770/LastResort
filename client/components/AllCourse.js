@@ -3,20 +3,19 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getCourse, dataJSON } from '../store'
 
-// all the course
 class AllCourse extends React.Component {
     render() {
         console.log('props in allcourse', this.props)
         return (
             <div className="container">
                 <div className="row">
-                
+                <div className="col s12">
+            <h5>Welcome, Kevin Zhang!</h5>
+            <h5>Your Current GPA is 3.74</h5>
+          </div>
                     <div className="col s12 m6 push-m3 center-align">
                         <div className="collection center-align">
-                        <h5>Welcome, Jacoby Kang!</h5>
-            <h5>Your Current GPA is 3.74</h5>
-            <br />
-
+                        <br />
                             <Link
                                 to="/brightspace/add"
                                 className="teal lighten-2 waves-effect waves-light btn"
@@ -36,7 +35,7 @@ class AllCourse extends React.Component {
                                     <div className="flow-text truncate collection-item">
                                         <Link to={`/category/${individualCourse.id}`}>
                                             <div className="card-content black-text">
-                                                {individualCourse.name}
+                                                {individualCourse.className}
                                             </div>
                                         </Link>
                                     </div>
@@ -54,10 +53,9 @@ const mapStateToProps = (state, ownProps) => {
     // const productId = Number(ownProps.match.params.productId)
     console.log('state in all course', state)
 
-
     return {
         //   product: state.products.byId[productId] || state.products.byId[0],
-        course: getCourse(state.course)
+        course: getCourse()
         //   isAdmin: !!state.user.admin
     }
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import { addAssignmentCat } from '../store'
+import { addAssignmentCat, dataJSON } from '../store'
 
 // ACTION TYPES
 
@@ -105,6 +105,7 @@ export default function(state = defaultAssignments, action) {
   }
 }
 
+
 // SELECTORS
 
 // export const getAvailableProducts = productsState => {
@@ -113,27 +114,65 @@ export default function(state = defaultAssignments, action) {
 //     return result
 //   }, [])
 // }
-
-//assignments by course
-export const getAssignmentByAssignment = (state, categoryId) => {
-  return Object.values(state.assignmentCat.byId).reduce(
-    (result, assCat) => {
-      console.log('category of each id', assCat)
-      if (assCat.categoryId === categoryId) {
-        result.push(state.assignment.byId[assCat.assignmentId])
+var letterMap = {
+  'A+': 100,
+  'A': 100,
+  'B+': 88,
+  'B': 85,
+  'B-': 82,
+  'C+': 78,
+  'C': 75,
+  'C-': 72,
+  'D+': 68,
+  'D': 65,
+  'D-': 62,
+  'F': 59
+}
+for (var i = 0; i < dataJSON.length; i++) {
+  dataJSON[i].grades.id = i+1;
+  for (var key in dataJSON[i].grades) {
+    if (key === "className" || key === "id") {
+      continue
+    }
+    console.log("HERE*******", key);
+    var achieved = dataJSON[i].grades[key].achieved;
+    var total = dataJSON[i].grades[key].total;
+    if (achieved !== null && total !== null) {
+      achieved = parseFloat(achieved);
+      total = parseFloat(total);
+      postAssignment({"category": key, "gradeWeight": total/100, "grade": achieved/total*100}, dataJSON[i].grades.id);
+    } else {
+      var classGrade = dataJSON[i].grades[key].grade;
+      classGrade = classGrade.split(" ")[0];
+      if (isNaN(parseFloat(classGrade))) {
+        classGrade = letterMap[classGrade];
+      } else {
+        classGrade = parseFloat(classGrade);
       }
-      return result
-    },
-    []
-  )
+      postAssignment({"category": key, "gradeWeight": 0.1, "grade": classGrade}, dataJSON[i].grades.id);
+    }
+    
+  }
 }
 
-//get average grade 
-export const getAvgAssignment = (state, categoryId) => {
+export const getAssignmentByAssignment = (courseId) => {
+  return dataJSON.reduce((total, amount) => {
+    if(amount.grades.id === courseId) {
+    Object.entries(amount.grades).forEach(course => {
+      if(course[0] !== "className" && course[0] !== "id") {
+        total.push(course[0]);
+      }
+    })
+  }
+    return total
+  }, [])
+}
+
+export const getAvgAssignment = (state, courseId) => {
   return Object.values(state.assignmentCat.byId).reduce(
     (total, amount) => {
  
-    if(amount.categoryId === categoryId) {
+    if(amount.categoryId === courseId) {
       total = total + state.assignment.byId[amount.assignmentId].grade*state.assignment.byId[amount.assignmentId].gradeWeight;
      
       return total;
@@ -141,14 +180,13 @@ export const getAvgAssignment = (state, categoryId) => {
     return total;
   }, 0)}
 
-  //get total number of assignments 
-  export const getTotAssignment = (state, categoryId) => {
+  export const getTotAssignment = (state, courseId) => {
     return Object.values(state.assignmentCat.byId).reduce(
       (total, amount) => {
 
         console.log('lknflknflk', state.assignment.byId[amount.assignmentId].gradeWeight)
    
-      if(amount.categoryId === categoryId) {
+      if(amount.categoryId === courseId) {
         console.log('lknflknflk', state.assignment.byId[amount.assignmentId].gradeWeight)
         total = total + state.assignment.byId[amount.assignmentId].gradeWeight*100;
        
@@ -156,4 +194,3 @@ export const getAvgAssignment = (state, categoryId) => {
       }
       return total;
     }, 0)}
-

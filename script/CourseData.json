@@ -1,22 +1,15 @@
 [
+   
     {
-      "name": "KOR 1101-01-02 MERGE Elementary Korean I (2018F)",
-      "goalGPA": 3.8
-        },
+        "name": "CS 3281-01 Principles Operating Systems I (2018F)"
+          },
     {
-        "name": "CS 3281-01 Principles Operating Systems I (2018F)",
-        "goalGPA": 4.0
-    },
-    {
-      "name": "CS 4278-01 Prin of Software Engr (2018F)",
-      "goalGPA": 4.0
-  },
+      "name": "CS 4278-01 Prin of Software Engr (2018F)"
+      },
   {
-    "name": "CS 4959-01 Computer Science Project Sem (2018F)",
-    "goalGPA": 4.0
-},
+    "name": "CS 4959-01 Computer Science Project Sem (2018F)"
+  },
 {
-  "name": "CS 3250-02 Algorithms (2018F)",
-  "goalGPA": 4.0
+  "name": "CS 3250-02 Algorithms (2018F)"
 }
   ]

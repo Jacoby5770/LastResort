@@ -17,10 +17,7 @@ const SingleCourse = props => {
                     <div className="collection center-align" key={course.id}>
                         <br />
                         {course.name}
-                        <br />
-                        <div>Here is your goal GPA: {course.goalGPA}</div>
-                        <br />
-                        
+                        <br />                        
                         <Link
                         to={`/category/${course.id}/add`}
                         className="teal lighten-2 waves-effect waves-light btn"

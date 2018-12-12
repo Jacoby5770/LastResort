@@ -4,11 +4,10 @@ import {postAssignment} from '../store'
 import {connect} from 'react-redux'
 import history from '../history'
 
-// add individual assignment 
 class AddAssignment extends React.Component {
   submit = async addedAssignment => {
-
-    const currentCategoryId = Number(this.props.match.params.categoryId)
+    const currentCategoryId = (this.props.match.params.categoryId)
+    console.log('lsknvkln', currentCategoryId)
     await this.props.postAssignment(addedAssignment, currentCategoryId)
     addedAssignment.categoryId = currentCategoryId
     history.push(`/category/${currentCategoryId}`)

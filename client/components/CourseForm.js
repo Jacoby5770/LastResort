@@ -14,11 +14,7 @@ let CourseForm = props => {
           <Field name="name" component="input" type="text" />
           <label htmlFor="name">Course Name</label>
         </div>
-        <div className="col s12 m6">
-          <Field name="goalGPA" component="input" type="number" />
-          <label htmlFor="goalGPA">Goal GPA</label>
-          {/* <span className="helper-text">Cannot be empty, must be > 0</span> */}
-        </div>
+        
         <button
         className="btn-floating btn-large waves-effect waves-light teal lighten-2"
           disabled={pristine || submitting}

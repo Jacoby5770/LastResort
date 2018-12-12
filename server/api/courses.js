@@ -3,8 +3,7 @@ const {Course} = require('../db/models')
 module.exports = router
 
 const createCourseFromJSON = body => ({
-  name: '' + body.name,
-  goalGPA: +body.goalGPA,
+  name: '' + body.name
 })
 
  router

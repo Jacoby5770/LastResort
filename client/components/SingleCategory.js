@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { AssignmentByCategory } from '../components'
 import { getAssignmentByAssignment, getAvgAssignment, getTotAssignment } from '../store'
 
-// deprecated
 const SingleCategory = props => {
     console.log('props in single category fegr', props)
     return (
@@ -26,7 +25,7 @@ const SingleCategory = props => {
                         <br />
 
                         </Link>
-                        <AssignmentByCategory courseId = {props.match.params.categoryId}assignment={props.assignment} />
+                        <AssignmentByCategory assignment={props.assignment} />
                     </div>
                 </div>
             </div>
@@ -35,13 +34,13 @@ const SingleCategory = props => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const categoryId = Number(ownProps.match.params.categoryId)
-    console.log("state", state)
+    const courseId = Number(ownProps.match.params.categoryId)
+    console.log("state*********", courseId)
     return {
-        assignment: getAssignmentByAssignment(state, categoryId),
+        assignment: getAssignmentByAssignment(courseId),
         category: state.category,
-        avgAssignment: getAvgAssignment(state, categoryId) || [],
-        totAssignment: getTotAssignment(state, categoryId) || []
+        avgAssignment: getAvgAssignment(state, courseId) || [],
+        totAssignment: getTotAssignment(state, courseId) || []
 
         // isAdmin: !!state.user.admin
     }

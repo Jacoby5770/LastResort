@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory, AddAssignment, AddBrightspace, EditAssignment } from './components'
-import { me, getCourses, getCategories, getAssignments, getAssignmentCats, getDatas, getUsers } from './store'
+import { UserHome, AllCourse, AddCourse, EditCourse, SingleCourse, SingleCategory, AssignmentByCategory, AddCategory, AddAssignment, AddBrightspace } from './components'
+import { me, getCourses, getCategories, getAssignments, getAssignmentCats, getUsers } from './store'
 
 /**
  * COMPONENT
@@ -33,8 +33,6 @@ class Routes extends Component {
         <Route path="/welcome" component={UserHome} />
         <Route path="/course/add" component={AddCourse} />
         <Route path="/assignment/:categoryId/add" component={AddAssignment} />
-        <Route path="/assignment/:categoryId/:assignmentId/edit" component={EditAssignment} />
-
         <Route path="/" component={AddBrightspace} />
         <Route path="/category/:courseId/add" component={AddCategory} />
         <Route path="/course/:courseId/edit" component={EditCourse} />
@@ -70,12 +68,11 @@ const mapDispatch = dispatch => {
   console.log('dispatch in')
   return {
     async loadInitialData() {
-      // await dispatch(getUsers())
+      await dispatch(getUsers())
       await dispatch(getCourses())
       await dispatch(getCategories())
       await dispatch(getAssignments())
       await dispatch(getAssignmentCats())
-      await dispatch(getDatas())
     }
   }
 }
