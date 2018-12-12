@@ -1,15 +1,14 @@
 import React from 'react'
 import {BrightspaceForm} from '../components'
-import {postCourse, postAssignment, dataJSON} from '../store'
+import {postCourse, postAssignment} from '../store'
 import {connect} from 'react-redux'
 import history from '../history'
 
-// deprecated because we made requests to server for brightspace information
 class AddBrightspace extends React.Component {
-  submit = () => {
+  submit = (credentials) => {
     // const currentCourseId = Number(this.props.match.params.courseId)
     // addedCategory.courseId = currentCourseId
-    this.props.postAssignment()
+    this.props.postAssignment(credentials)
     history.push(`/home`)
   }
 
@@ -34,8 +33,15 @@ const mapDispatchToProps = dispatch => {
     'F': 59
   }
   return {
-    postAssignment: () => {
-      for (var i = 0; i < dataJSON.length; i++) {
+    postAssignment: (credentials) => {
+      var username = credentials.username;
+      var password = credentials.password;
+      var url = "http://3.17.41.214/get-grades?username="+username+"&password="+password;
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            var dataJSON = xmlHttp.response;
+            for (var i = 0; i < dataJSON.length; i++) {
         dataJSON[i].grades.id = i+1;
         for (var key in dataJSON[i].grades) {
           if (key === "className" || key === "id") {
@@ -67,7 +73,12 @@ const mapDispatchToProps = dispatch => {
       for (var i = 0; i < dataJSON.length; i++) {
         dataJSON[i].grades.id = i+1;
         dispatch(postCourse({"name": dataJSON[i].grades.className, "userId": null}))
+      }
+        }
     }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.responseType = 'json';
+    xmlHttp.send(null);
     }
 
   }
