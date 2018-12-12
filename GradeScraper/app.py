@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify, Response
-import subprocess, os
+import subprocess
+import os
+import time
+import signal
 
 app = Flask(__name__)
 
@@ -21,7 +24,12 @@ def scrape_data():
     if not username or not password:
         return "ERROR"
     spider_name = 'grades'
+    splash = subprocess.Popen('docker run -p 8050:8050 scrapinghub/splash', shell=True, preexec_fn=os.setsid)
+    time.sleep(5)
     subprocess.check_output('scrapy crawl grades -a username={} -a password={} -o output.json'.format(username, password), shell=True)
+    os.killpg(os.getpgid(splash.pid), signal.SIGTERM)
+    # if not splash.poll():
+    #     print("SPLASH STOPPED")
     results = None
     with open('output.json') as items_file:
         results = items_file.read()
@@ -33,7 +41,7 @@ def scrape_data():
 
 @app.route('/demo-grades')
 def demo():
-    with open('output.json') as items_file:
+    with open('output1.json') as items_file:
         results = items_file.read()
     resp = Response(results)
     resp.headers['Access-Control-Allow-Origin'] = '*'

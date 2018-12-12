@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import scrapy, re, base64
+import scrapy, re#, base64
 try:
     from itertools import zip_longest
 except ImportError:
@@ -22,10 +22,11 @@ class GradesSpider(scrapy.Spider):
         'DUPEFILTER_CLASS': 'scrapy_splash.SplashAwareDupeFilter',
     }
 
-    def __init__(self, username='default', password='ZGVmYXVsdA=='):
+    def __init__(self, username='default', password='default'):
         self.baseURL = 'https://brightspace.vanderbilt.edu'
         self.username = username
-        self.password = (base64.b64decode(bytes(password, 'utf-8'))).decode('utf-8')
+        self.password = password
+        # self.password = (base64.b64decode(bytes(password, 'utf-8'))).decode('utf-8')
         # print(username, password)
         self.renderPage = """
         function main(splash, args)
@@ -89,7 +90,7 @@ class GradesSpider(scrapy.Spider):
             r'https://brightspace.vanderbilt.edu/d2l/home',
             self.parseHome,
             endpoint='execute',
-            args={'lua_source': script, 'timeout': 30},
+            args={'lua_source': script, 'timeout': 50},
             headers={'User-Agent': 'Mozilla/5.0'}
         )
 
@@ -106,7 +107,7 @@ class GradesSpider(scrapy.Spider):
                 nextURL,
                 self.parseClassURL,
                 endpoint='execute',
-                args={'lua_source': self.renderPage, 'timeout': 30},
+                args={'lua_source': self.renderPage, 'timeout': 50},
                 headers=response.headers,
             )
 
@@ -128,7 +129,7 @@ class GradesSpider(scrapy.Spider):
                 self.baseURL+gradeURL, 
                 self.parseGrades,
                 endpoint='execute',
-                args={'lua_source': self.renderGrades, 'timeout': 30},
+                args={'lua_source': self.renderGrades, 'timeout': 50},
                 headers=self.headers,
             )
         classProgressURL = response.xpath('//a[@class="d2l-navigation-s-link" and text()="Class Progress"]/@href').extract_first()
@@ -138,7 +139,7 @@ class GradesSpider(scrapy.Spider):
                 self.baseURL+classProgressURL, 
                 self.parseClassProgress,
                 endpoint='execute',
-                args={'lua_source': self.expandGrades, 'timeout': 30},
+                args={'lua_source': self.expandGrades, 'timeout': 50},
                 headers=self.headers,
             )
 
@@ -160,7 +161,11 @@ class GradesSpider(scrapy.Spider):
         data['grades']['className'] = className
         for asgn, grade in zip_longest(response.css('th.d_gt.d_ich.d2l-table-cell-first label::text'), 
                                        response.css('td.d_gn.d_gr.d_gt.d2l-table-cell-last label::text')):
-            data['grades'][asgn.extract()] = {'grade': grade.extract(), 'achieved': None, 'total': None}
+            if not asgn:
+                break
+            if grade:
+                grade = grade.extract()
+            data['grades'][asgn.extract()] = {'grade': grade, 'achieved': None, 'total': None}
         return data
 
     def parseClassProgress(self, response):
@@ -173,9 +178,15 @@ class GradesSpider(scrapy.Spider):
         for asgn, grade, percentStr in zip_longest(response.css('div.js_UserGrade h4.d2l-heading.vui-heading-3.d2l-heading-none::text'), 
                                                    response.css('div.js_UserGrade span.d2l-textblock.d2l-textblock-strong::text'), 
                                                    response.css('div.d2l-textblock.js_Weight::text')):
-            percentages = re.findall(r'[0-9]+\.?[0-9]+', percentStr.extract())
+            if not asgn:
+                break
+            if grade:
+                grade = grade.extract()
             achieved = total = None
+            percentages = list()
+            if percentStr:
+                percentages = re.findall(r'[0-9]+\.?[0-9]+', percentStr.extract())
             if len(percentages) == 2:
                 total, achieved = percentages
-            data['grades'][asgn.extract()] = {'grade': grade.extract(), 'achieved': achieved, 'total': total}
+            data['grades'][asgn.extract()] = {'grade': grade, 'achieved': achieved, 'total': total}
         return data
